@@ -11,6 +11,16 @@ require.config({
   }
 });
 
-define("app", ["jquery", "backbone"], function ($, Backbone) {
-  $('.loading').html('Загружено, backbone v.' + Backbone.VERSION);
+define("app", ["jquery", "models/event", "views/event"], function ($, Event, EventView) {
+  var event = new Event({
+      title: "Цикл разработки",
+      lecturer: "mishanga",
+      start: new Date().getTime()
+    }),
+
+    eventView = new EventView({
+      model: event
+    });
+
+  $('.loading').html('Загружен').after(eventView.render().el);
 });
