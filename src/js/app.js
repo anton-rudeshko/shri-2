@@ -14,6 +14,9 @@ require.config({
   }
 });
 
+/**
+ * Application entry point
+ */
 define('app', ['jquery', 'models/event', 'views/event'], function ($, Event, EventView) {
   var event = new Event({
       title: 'Цикл разработки',
