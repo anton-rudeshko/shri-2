@@ -1,20 +1,23 @@
 require.config({
+  deps: ['templates'],
   paths: {
     'jquery': 'lib/jquery',
     'underscore': 'lib/underscore',
+    'handlebars': 'lib/handlebars',
     'backbone': 'lib/backbone'
   },
   shim: {
     jquery: { exports: '$' },
     underscore: { exports: '_' },
+    handlebars: { exports: 'Handlebars' },
     backbone: { exports: 'Backbone', deps: ['underscore', 'jquery'] }
   }
 });
 
-define("app", ["jquery", "models/event", "views/event"], function ($, Event, EventView) {
+define('app', ['jquery', 'models/event', 'views/event'], function ($, Event, EventView) {
   var event = new Event({
-      title: "Цикл разработки",
-      lecturer: "mishanga",
+      title: 'Цикл разработки',
+      lecturer: 'mishanga',
       start: new Date().getTime()
     }),
 
