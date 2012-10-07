@@ -1,0 +1,17 @@
+{
+  "name": "shri-2",
+  "version": "0.0.1",
+  "author": "Anton Rudeshko <anton@rudeshko.com>",
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/anton-rudeshko/shri-2.git"
+  },
+  "dependencies": {
+    "requirejs": "2.0.6"
+  },
+  "engines": {
+    "node": ">=0.8"
+  }
+}
+
