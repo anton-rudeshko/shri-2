@@ -5,5 +5,5 @@ require.config({
 });
 
 define("app", ["jquery"], function ($) {
-    $('body').append('Hello from jQuery v' + $.fn.jquery);
+    $('.loading').html('Загружено');
 });

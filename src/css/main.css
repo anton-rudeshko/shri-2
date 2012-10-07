@@ -1,1 +1,17 @@
 @import url("reset.css");
+
+html, body {
+    height: 100%;
+}
+
+.loading {
+    position: absolute;
+
+    width: 6em;
+    margin-top: 30%;
+    margin-left: 50%;
+    left: -3em;
+
+    vertical-align: middle;
+    text-align: center;
+}
