@@ -1,6 +1,11 @@
-OUT=out
-RJS=node_modules/requirejs/bin/r.js
 NODE=node
+OUT=out
+
+HANDLEBARS=node_modules/handlebars/bin/handlebars
+TEMPLATES_IN=src/templates/
+TEMPLATES_OUT=src/js/templates.js
+
+RJS=node_modules/requirejs/bin/r.js
 
 BUILD_JS=build/scripts.js
 BUILD_CSS=build/styles.js
@@ -13,13 +18,17 @@ copy-html: start
 	@echo Copying html
 	@cp $(HTML) $(OUT)/
 
-minify-js: start
+minify-js: start templates
 	@echo Minifying JS
 	@$(NODE) $(RJS) -o $(BUILD_JS)
 
 minify-css: start
 	@echo Minifying CSS
 	@$(NODE) $(RJS) -o $(BUILD_CSS)
+
+templates:
+	@echo Compiling templates
+	@$(NODE) $(HANDLEBARS) $(TEMPLATES_IN) -k each -k if -k unless -a > $(TEMPLATES_OUT)
 
 start: clean
 	@echo Make output dir

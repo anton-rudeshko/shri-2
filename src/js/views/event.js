@@ -1,16 +1,17 @@
-define("views/event", ["backbone"], function (Backbone) {
+define('views/event', ['backbone', 'handlebars'], function (Backbone, Handlebars) {
   /**
    * EventView
    */
   return Backbone.View.extend({
     initialize: function () {
+      this.template = Handlebars.templates['event'];
       this.model.on('error', function (model, error) {
         alert('model error: ' + error)
       });
     },
 
     render: function () {
-      this.$el.append('<div>Title: ' + this.model.get('title') + ', lecturer: ' + this.model.get('lecturer') + '</div>');
+      this.$el.append(this.template(this.model.toJSON()));
       return this;
     }
   });
