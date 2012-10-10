@@ -11,7 +11,7 @@ define('views/event', ['backbone', 'handlebars'], function (Backbone, Handlebars
     },
 
     render: function () {
-      this.$el.append(this.template(this.model.toJSON()));
+      this.$el.html(this.template(this.model.toJSON()));
       return this;
     }
   });
