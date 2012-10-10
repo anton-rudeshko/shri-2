@@ -1,7 +1,4 @@
-define('views/events', ['backbone', 'views/event'], function (Backbone, EventView) {
-  /**
-   * EventsCollectionView
-   */
+define('EventCollectionView', ['backbone', 'EventView'], function (Backbone, EventView) {
   return Backbone.View.extend({
     render: function () {
       var html = this.collection.reduce(function (html, item) {

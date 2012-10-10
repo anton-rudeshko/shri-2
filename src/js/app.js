@@ -17,7 +17,7 @@ require.config({
 /**
  * Application entry point
  */
-define('app', ['jquery', 'defaultData', 'models/shri', 'views/shri'], function ($, data, ShriModel, ShriView) {
+define('app', ['jquery', 'defaultData', 'ShriModel', 'ShriView'], function ($, data, ShriModel, ShriView) {
   window.ShriView = new ShriView({
     model: new ShriModel(data.lectures),
     el: $('#content')

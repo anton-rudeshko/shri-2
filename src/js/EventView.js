@@ -1,7 +1,4 @@
-define('views/event', ['backbone', 'handlebars'], function (Backbone, Handlebars) {
-  /**
-   * EventView
-   */
+define('EventView', ['backbone', 'handlebars'], function (Backbone, Handlebars) {
   return Backbone.View.extend({
     initialize: function () {
       this.template = Handlebars.templates['event'];
