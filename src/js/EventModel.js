@@ -1,12 +1,9 @@
-define("models/event", ["backbone"], function (Backbone) {
+define("EventModel", ["backbone"], function (Backbone) {
   var
     SECOND = 1000,
     MINUTE = 60*SECOND,
     HOUR = 60*MINUTE;
 
-  /**
-   * EventModel
-   */
   return Backbone.Model.extend({
     defaults: {
       /**

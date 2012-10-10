@@ -1,7 +1,4 @@
-define('views/shri', ['backbone', 'views/events'], function (Backbone, EventCollectionView) {
-  /**
-   * ShriView
-   */
+define('ShriView', ['backbone', 'EventCollectionView'], function (Backbone, EventCollectionView) {
   return Backbone.View.extend({
     initialize: function () {
       this.eventsView = new EventCollectionView({collection: this.model.events});
