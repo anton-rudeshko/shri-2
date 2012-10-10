@@ -1,4 +1,9 @@
 define("models/event", ["backbone"], function (Backbone) {
+  var
+    SECOND = 1000,
+    MINUTE = 60*SECOND,
+    HOUR = 60*MINUTE;
+
   /**
    * EventModel
    */
@@ -21,7 +26,7 @@ define("models/event", ["backbone"], function (Backbone) {
        * Lecture length in millis
        * By default - 1 hour
        */
-      length: 3600000,
+      length: HOUR,
 
       /**
        * {String} [Optional]
@@ -32,7 +37,10 @@ define("models/event", ["backbone"], function (Backbone) {
 
     validate: function (attrs) {
       if (!attrs.title) {
-        return "Title is required";
+        return "У лекции должна быть тема";
+      }
+      if (attrs.length < 10*MINUTE) {
+        return "Длина лекции должна быть не меньше 10 минут";
       }
       return "";
     }
