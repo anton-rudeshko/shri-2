@@ -1,5 +1,24 @@
 .event {
+  padding: .5em;
+  margin: .5em;
+  width: 25em;
 
+  background-color: #fff;
+  border: 1px solid #eee;
+
+  transition: all .2s;
+  -moz-transition: all .2s;
+  -webkit-transition: all .2s;
+  -o-transition: all .2s;
+}
+
+.event:hover {
+  border: 1px solid #ddd;
+  box-shadow: 0 0 5px #ddd;
+}
+
+.event:hover .lecturer {
+  color: #888;
 }
 
 .event .title {
@@ -7,10 +26,10 @@
 }
 
 .event .start-time {
-
+  margin-right: .2em;
 }
 
 .event .lecturer {
-  padding-left: 1em;
+  margin-left: .2em;
   color: #aaa;
 }

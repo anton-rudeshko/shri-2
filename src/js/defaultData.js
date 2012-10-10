@@ -31,7 +31,7 @@ define('defaultData', function () {
       },
       {
         title: 'Wiki',
-        lecturer: 'veged',
+        lecturer: 'Сергей Бережной',
         start: parseDate('2012.15.09 14:00')
       }
     ]
