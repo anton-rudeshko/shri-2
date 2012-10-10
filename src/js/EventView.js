@@ -1,10 +1,15 @@
 define('EventView', ['backbone', 'handlebars'], function (Backbone, Handlebars) {
   return Backbone.View.extend({
+    tagName: 'li',
+
+    className: 'event',
+
+    events: {
+      'click': 'select'
+    },
+
     initialize: function () {
       this.template = Handlebars.templates['event'];
-      this.model.on('error', function (model, error) {
-        alert('model error: ' + error)
-      });
     },
 
     render: function () {
@@ -19,14 +24,23 @@ define('EventView', ['backbone', 'handlebars'], function (Backbone, Handlebars) 
       if (!date) {
         return '';
       }
-      hours = this.padLeft(date.getHours() + "");
-      minutes = this.padLeft(date.getMinutes() + "");
+      hours = this.padLeft(date.getHours() + '');
+      minutes = this.padLeft(date.getMinutes() + '');
       return hours + ':' + minutes;
     },
 
+    /**
+     * Pad string left with two zeroes
+     * @param {String} str
+     * @return {String}
+     */
     padLeft: function (str) {
-      var pad = "00";
+      var pad = '00';
       return pad.substring(0, pad.length - str.length) + str;
+    },
+
+    select: function () {
+      this.$el.toggleClass('selected');
     }
   });
 });

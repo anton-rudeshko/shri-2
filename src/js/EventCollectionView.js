@@ -1,10 +1,14 @@
 define('EventCollectionView', ['backbone', 'EventView'], function (Backbone, EventView) {
   return Backbone.View.extend({
+    tagName: 'ul',
+
+    className: 'events',
+
     render: function () {
-      var html = this.collection.reduce(function (html, item) {
-        return html + new EventView({model: item}).render().$el.html();
-      }, "");
-      this.$el.html(html);
+      var els = this.collection.map(function (model) {
+        return new EventView({model: model}).render().el;
+      });
+      this.$el.html(els);
       return this;
     }
   });

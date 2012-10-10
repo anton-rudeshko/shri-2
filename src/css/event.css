@@ -1,4 +1,7 @@
 .event {
+  font-size: 14px;
+  list-style: none;
+
   padding: .5em;
   margin: .5em;
   width: 25em;
@@ -32,4 +35,8 @@
 .event .lecturer {
   margin-left: .2em;
   color: #aaa;
+}
+
+.event.selected {
+  background-color: #f8f5ec;
 }
