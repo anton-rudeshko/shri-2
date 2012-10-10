@@ -17,3 +17,13 @@ html, body {
   vertical-align: middle;
   text-align: center;
 }
+
+.ya-logo {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 64px;
+  height: 24px;
+
+  background: #fff url("../pix/ya-logo.png") no-repeat;
+}
