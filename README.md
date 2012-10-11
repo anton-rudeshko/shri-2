@@ -10,7 +10,7 @@
     * [require.js](http://requirejs.org/)
     * [Backbone.js](http://backbonejs.org/)
     * [Underscore.js](http://underscorejs.org/)
-    * [jQuery](http://jquery.com/),
+    * [jQuery](http://jquery.com/)
 * Юнит тесты: [JsTestDriver](http://code.google.com/p/js-test-driver/)
 * Шаблонизатор: [Handlebars](http://handlebarsjs.com)
 * Сборка:
