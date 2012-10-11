@@ -1,12 +1,11 @@
-define('EventCollectionView', ['backbone', 'EventView'], function (Backbone, EventView) {
+define('ScheduleView', ['backbone', 'DayView'], function (Backbone, DayView) {
   return Backbone.View.extend({
     tagName: 'ul',
-
-    className: 'events',
+    className: 'day',
 
     render: function () {
       var els = this.collection.map(function (model) {
-        return new EventView({model: model}).render().el;
+        return new DayView({collection: model}).render().el;
       });
       this.$el.html(els);
       return this;

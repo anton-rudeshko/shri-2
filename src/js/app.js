@@ -17,9 +17,13 @@ require.config({
 /**
  * Application entry point
  */
-define('app', ['jquery', 'defaultData', 'ShriModel', 'ShriView'], function ($, data, ShriModel, ShriView) {
-  window.ShriView = new ShriView({
-    model: new ShriModel(data.lectures),
-    el: $('#content')
+define('app', ['jquery', 'defaultData', 'DayModel', 'ScheduleView'], function ($, data, DayModel, ScheduleView) {
+  new ScheduleView({
+    el: $('#content'),
+    collection: [
+      new DayModel(data.lectures),
+      new DayModel([]),
+      new DayModel(data.lectures)
+    ]
   }).render();
 });
