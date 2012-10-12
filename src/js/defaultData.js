@@ -48,6 +48,31 @@ define('defaultData', function () {
         lecturer: 'Вячеслав Олиянчук',
         start: parseDate('2012.09.18 20:00'),
         url: 'https://github.com/yandex-shri/lectures/blob/master/05-editors.md'
+      },
+      {
+        title: 'Браузеры',
+        lecturer: 'Георгий Мостоловица',
+        start: parseDate('2012.09.20 19:00')
+      },
+      {
+        title: 'Системы контроля версий',
+        lecturer: 'Георгий Мостоловица',
+        start: parseDate('2012.09.20 20:00')
+      },
+      {
+        title: 'Тестирование',
+        lecturer: 'Марина Широчкина',
+        start: parseDate('2012.09.22 12:00')
+      },
+      {
+        title: 'Развертывание верстки',
+        lecturer: 'Павел Пушкарев',
+        start: parseDate('2012.09.22 13:00')
+      },
+      {
+        title: 'HTTP-протокол',
+        lecturer: 'Алексей Бережной',
+        start: parseDate('2012.09.22 14:00')
       }
     ]
   };
