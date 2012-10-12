@@ -53,4 +53,5 @@
 
 .event__editing_title .event__title-input {
   display: inline-block;
+  border: none;
 }

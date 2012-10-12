@@ -53,7 +53,7 @@ define('EventView', ['backbone', 'handlebars'], function (Backbone, Handlebars) 
 
     editTitle: function () {
       this.$el.addClass('event__editing_title');
-      this.input.focus();
+      this.input.focus().val(this.input.val());
     },
 
     updateOnEnter: function(e) {
@@ -66,15 +66,24 @@ define('EventView', ['backbone', 'handlebars'], function (Backbone, Handlebars) 
     },
 
     close: function () {
-      var value = this.input.val();
+      var value = this.trimWhiteSpace(this.input.val());
       if (value) {
-        this.model.set('title', value);
+        this.input.val(value);
+        this.model.set({'title': value});
       }
       this.$el.removeClass("event__editing_title");
     },
 
     select: function () {
       this.$el.toggleClass('selected');
+    },
+
+    trimWhiteSpace: function (str) {
+      if (!str) {
+        return str;
+      }
+      return str.replace(/^\s\s*/, '').replace(/\s\s*$/, '').replace(/\s+/g,' ');
     }
+
   });
 });
