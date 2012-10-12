@@ -1,9 +1,9 @@
 @import url("reset.css");
 @import url("day.css");
 @import url("event.css");
+@import url("schedule.css");
 
 html, body {
-  height: 100%;
   font-family: Arial, sans-serif;
 }
 

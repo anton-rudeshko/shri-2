@@ -1,0 +1,6 @@
+@media (min-width: 960px) {
+  .schedule {
+    margin: 2em auto;
+    width: 960px;
+  }
+}

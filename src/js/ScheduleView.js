@@ -1,13 +1,13 @@
-define('ScheduleView', ['backbone', 'DayView'], function (Backbone, DayView) {
+define('ScheduleView', ['backbone', 'handlebars', 'DayView'], function (Backbone, Handlebars, DayView) {
   return Backbone.View.extend({
-    tagName: 'ul',
-    className: 'days',
+    className: 'schedule',
+    template: Handlebars.templates['schedule'],
 
     render: function () {
       var els = this.model.daysCollection.map(function (model) {
         return new DayView({model: model}).render().el;
       });
-      this.$el.html(els);
+      this.$el.html(this.template()).find('.days').html(els);
       return this;
     }
   });

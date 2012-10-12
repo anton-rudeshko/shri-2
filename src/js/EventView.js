@@ -1,5 +1,7 @@
 define('EventView', ['backbone', 'handlebars'], function (Backbone, Handlebars) {
-  var ENTER = 13;
+  var
+    ESCAPE = 27,
+    ENTER = 13;
 
   return Backbone.View.extend({
     tagName: 'li',
@@ -8,8 +10,10 @@ define('EventView', ['backbone', 'handlebars'], function (Backbone, Handlebars) 
 
     events: {
       'click': 'select',
-      'dblclick .event__title': 'editTitle',
-      'keypress .event__title-input': 'updateOnEnter'
+
+      'dblclick .event__title'      : 'editTitle',
+      'keyup    .event__title-input': 'updateOnEnter',
+      'blur     .event__title-input': 'close'
     },
 
     initialize: function () {
@@ -56,14 +60,16 @@ define('EventView', ['backbone', 'handlebars'], function (Backbone, Handlebars) 
       if (e.keyCode === ENTER) {
         this.close();
       }
+      if (e.keyCode === ESCAPE) {
+        this.render();
+      }
     },
 
     close: function () {
       var value = this.input.val();
-      if (!value) {
-        this.clear();
+      if (value) {
+        this.model.set('title', value);
       }
-      this.model.set({title: value});
       this.$el.removeClass("event__editing_title");
     },
 
