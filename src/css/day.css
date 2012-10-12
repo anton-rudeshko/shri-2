@@ -24,7 +24,10 @@
   color: #ccc;
   text-transform: uppercase;
 
+  -moz-transform-origin: 100% 100% 0;
   -webkit-transform-origin: 100% 100% 0;
+  -o-transform-origin: 100% 100% 0;
+  transform-origin: 100% 100% 0;
 
   -moz-transition: all .2s;
   -webkit-transition: all .2s;
