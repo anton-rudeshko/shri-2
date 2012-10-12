@@ -2,6 +2,7 @@
 @import url("day.css");
 @import url("event.css");
 @import url("schedule.css");
+@import url("footer.css");
 
 html, body {
   height: 100%;
@@ -17,23 +18,6 @@ html, body {
   padding-bottom: 50px;
 }
 
-.footer {
-  position: relative;
-  margin-top: -50px;
-  height: 50px;
-  clear: both;
-}
-
-.copyright {
-  text-align: center;
-  vertical-align: bottom;
-  position: absolute;
-  bottom: 5px;
-  width: 100%;
-  font-size: 10px;
-  color: #aaa;
-}
-
 .start-info {
   position: absolute;
 
@@ -44,14 +28,4 @@ html, body {
 
   vertical-align: middle;
   text-align: center;
-}
-
-.ya-logo {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  width: 64px;
-  height: 24px;
-
-  background: #fff url("../pix/ya-logo.png") no-repeat;
 }
