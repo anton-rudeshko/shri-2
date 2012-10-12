@@ -18,6 +18,11 @@ require.config({
  * Application entry point
  */
 define('app', ['jquery', 'defaultData', 'ScheduleModel', 'ScheduleView'], function ($, data, ScheduleModel, ScheduleView) {
+  if (!window.localStorage) {
+    $('.start-info').text('К сожалению, Ваш браузер не поддерживает localStorage');
+    return;
+  }
+
   window.ScheduleView = new ScheduleView({
     el: $('#content'),
     model: new ScheduleModel(data.lectures)

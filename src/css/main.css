@@ -7,13 +7,13 @@ html, body {
   font-family: Arial, sans-serif;
 }
 
-.loading {
+.start-info {
   position: absolute;
 
-  width: 6em;
+  width: 20em;
   margin-top: 30%;
   margin-left: 50%;
-  left: -3em;
+  left: -10em;
 
   vertical-align: middle;
   text-align: center;
