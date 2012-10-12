@@ -4,7 +4,9 @@
 
   padding: .5em;
   margin: .5em;
-  width: 25em;
+  width: 30em;
+  min-height: 1.5em;
+  line-height: 1.5em;
 
   background-color: #fff;
   border: 1px solid #eee;
@@ -20,23 +22,35 @@
   box-shadow: 0 0 5px #ddd;
 }
 
-.event:hover .lecturer {
+.event:hover .event__lecturer {
   color: #888;
 }
 
-.event .title {
-
+.event__editing_title .event__title {
+  display: none;
 }
 
-.event .start-time {
+.event__start-time {
   margin-right: .2em;
 }
 
-.event .lecturer {
+.event__lecturer {
   margin-left: .2em;
   color: #aaa;
 }
 
 .event.selected {
   background-color: #f8f5ec;
+}
+
+.event__title-input {
+  font-size: inherit;
+  display: none;
+  padding: 0;
+  margin: 0;
+  border: 1px solid #aaa;
+}
+
+.event__editing_title .event__title-input {
+  display: inline-block;
 }

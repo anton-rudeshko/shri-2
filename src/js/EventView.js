@@ -1,21 +1,29 @@
 define('EventView', ['backbone', 'handlebars'], function (Backbone, Handlebars) {
+  var ENTER = 13;
+
   return Backbone.View.extend({
     tagName: 'li',
-
     className: 'event',
+    template: Handlebars.templates['event'],
 
     events: {
-      'click': 'select'
+      'click': 'select',
+      'dblclick .event__title': 'editTitle',
+      'keypress .event__title-input': 'updateOnEnter'
     },
 
     initialize: function () {
-      this.template = Handlebars.templates['event'];
+      this.model.bind('change', this.render, this);
+      this.model.bind('destroy', this.remove, this);
     },
 
     render: function () {
       var model = this.model.toJSON();
       model.formattedDate = this.formatDate(model.start);
       this.$el.html(this.template(model));
+
+      this.input = this.$('.event__title-input');
+
       return this;
     },
 
@@ -37,6 +45,26 @@ define('EventView', ['backbone', 'handlebars'], function (Backbone, Handlebars) 
     padLeft: function (str) {
       var pad = '00';
       return pad.substring(0, pad.length - str.length) + str;
+    },
+
+    editTitle: function () {
+      this.$el.addClass('event__editing_title');
+      this.input.focus();
+    },
+
+    updateOnEnter: function(e) {
+      if (e.keyCode === ENTER) {
+        this.close();
+      }
+    },
+
+    close: function () {
+      var value = this.input.val();
+      if (!value) {
+        this.clear();
+      }
+      this.model.set({title: value});
+      this.$el.removeClass("event__editing_title");
     },
 
     select: function () {
