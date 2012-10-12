@@ -51,3 +51,17 @@
   min-height: 1em;
   min-width: 300px;
 }
+
+.day__add-event__icon {
+  display: block;
+  cursor: pointer;
+  visibility: hidden;
+  margin: 0 auto;
+  width: 16px;
+  height: 16px;
+  background: url("../pix/icon-add.png") no-repeat;
+}
+
+.day:hover .day__add-event__icon {
+  visibility: visible;
+}

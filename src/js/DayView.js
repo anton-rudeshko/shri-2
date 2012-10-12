@@ -4,9 +4,12 @@ define('DayView', ['backbone', 'underscore', 'handlebars', 'EventView'], functio
     className: 'day',
     template: Handlebars.templates['day'],
 
+    events: {
+      'click .day__add-event__icon': 'addNewDay'
+    },
+
     initialize: function () {
-      _.bindAll(this, 'toggleExpand', 'render');
-      this.model.on('change:empty', this.toggleExpand)
+      this.model.bind('change:empty', this.toggleExpand, this);
     },
 
     toggleExpand: function () {
@@ -24,6 +27,12 @@ define('DayView', ['backbone', 'underscore', 'handlebars', 'EventView'], functio
         .find('.children')
         .html(this.model.events.map(this.renderEvent));
       return this;
+    },
+
+    addNewDay: function () {
+      this.model.addEmpty();
+      // todo: only append new
+      this.render();
     }
   });
 });
