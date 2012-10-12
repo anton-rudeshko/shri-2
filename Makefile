@@ -10,9 +10,18 @@ RJS=node_modules/requirejs/bin/r.js
 BUILD_JS=build/scripts.js
 BUILD_CSS=build/styles.js
 HTML=src/index.html
+PIX=src/pix
 
-all: copy-html minify-js minify-css
+all: copy-resources minify-resources
 	@echo Done
+
+minify-resources: minify-js minify-css
+
+copy-resources: copy-html copy-pictures
+
+copy-pictures: start
+	@echo Copying pictures
+	@cp -r $(PIX) $(OUT)/
 
 copy-html: start
 	@echo Copying html
