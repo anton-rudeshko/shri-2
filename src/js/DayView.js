@@ -5,7 +5,7 @@ define('DayView', ['backbone', 'underscore', 'handlebars', 'EventView'], functio
     template: Handlebars.templates['day'],
 
     events: {
-      'click .day__add-event__icon': 'addNewDay'
+      'click .day__add-event': 'addNewDay'
     },
 
     initialize: function () {

@@ -52,16 +52,28 @@
   min-width: 300px;
 }
 
+.day__add-event {
+  cursor: pointer;
+}
+
 .day__add-event__icon {
   display: block;
-  cursor: pointer;
-  visibility: hidden;
+  opacity: 0;
   margin: 0 auto;
   width: 16px;
   height: 16px;
   background: url("../pix/icon-add.png") no-repeat;
+
+  -moz-transition: opacity .2s;
+  -webkit-transition: opacity .2s;
+  -o-transition: opacity .2s;
+  transition: opacity .2s;
 }
 
-.day:hover .day__add-event__icon {
-  visibility: visible;
+.day__events:hover .day__add-event__icon {
+  opacity: .3;
+}
+
+.day__add-event:hover .day__add-event__icon {
+  opacity: 1 !important;
 }
