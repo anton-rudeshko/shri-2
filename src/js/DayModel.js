@@ -1,4 +1,4 @@
-define('DayModel', ['backbone', 'underscore', 'EventCollection', 'EventModel'], function (Backbone, _, EventCollection, EventModel) {
+define('DayModel', ['backbone', 'EventCollection', 'EventModel'], function (Backbone, EventCollection, EventModel) {
   var DAYS = ['', 'понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота', 'воскресенье'];
   return Backbone.Model.extend({
     defaults: {
@@ -10,12 +10,11 @@ define('DayModel', ['backbone', 'underscore', 'EventCollection', 'EventModel'], 
 
     initialize: function () {
       this.set('title', DAYS[this.get('date').getDay()]);
-      _.bindAll(this, 'checkEmpty');
-      var eventModels = _(this.get('events')).map(function (event) {
+      var eventModels = this.get('events').map(function (event) {
         return new EventModel(event);
       });
       this.events = new EventCollection(eventModels);
-      this.events.on('change', this.checkEmpty);
+      this.events.on('change', this.checkEmpty, this);
 
       this.checkEmpty();
     },
