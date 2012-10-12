@@ -40,10 +40,10 @@
 }
 
 .day.expanded .day__title  {
-  -ms-transform:     translate(0, -100%) rotate(-90deg); /* IE 9 */
-  -webkit-transform: translate(0, -100%) rotate(-90deg); /* Safari and Chrome */
-  -o-transform:      translate(0, -100%) rotate(-90deg); /* Opera */
-  -moz-transform:    translate(0, -100%) rotate(-90deg); /* Firefox */
+  -ms-transform:     translate(0, -100%) rotate(-90deg);
+  -webkit-transform: translate(0, -100%) rotate(-90deg);
+  -o-transform:      translate(0, -100%) rotate(-90deg);
+  -moz-transform:    translate(0, -100%) rotate(-90deg);
   transform:         translate(0, -100%) rotate(-90deg);
 }
 
@@ -52,7 +52,7 @@
   padding-left: 5px;
   display: inline-block;
   min-height: 1em;
-  min-width: 300px;
+  min-width: 30em;
 }
 
 .day__add-event {

@@ -14,7 +14,7 @@ define('DayModel', ['backbone', 'EventCollection', 'EventModel'], function (Back
         return new EventModel(event);
       });
       this.events = new EventCollection(eventModels);
-      this.events.on('change', this.checkEmpty, this);
+      this.events.on('add remove', this.checkEmpty, this);
 
       this.checkEmpty();
     },
