@@ -4,7 +4,34 @@
 @import url("schedule.css");
 
 html, body {
+  height: 100%;
   font-family: Arial, sans-serif;
+}
+
+.wrap {
+  min-height: 100%;
+}
+
+.content {
+  overflow: auto;
+  padding-bottom: 50px;
+}
+
+.footer {
+  position: relative;
+  margin-top: -50px;
+  height: 50px;
+  clear: both;
+}
+
+.copyright {
+  text-align: center;
+  vertical-align: bottom;
+  position: absolute;
+  bottom: 5px;
+  width: 100%;
+  font-size: 10px;
+  color: #aaa;
 }
 
 .start-info {

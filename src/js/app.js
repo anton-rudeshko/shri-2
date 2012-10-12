@@ -24,7 +24,7 @@ define('app', ['jquery', 'defaultData', 'ScheduleModel', 'ScheduleView'], functi
   }
 
   window.ScheduleView = new ScheduleView({
-    el: $('#content'),
+    el: $('.content'),
     model: new ScheduleModel(data.lectures)
   }).render();
 });
