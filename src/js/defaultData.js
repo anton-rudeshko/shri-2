@@ -22,17 +22,32 @@ define('defaultData', function () {
       {
         title: 'Общий цикл разработки',
         lecturer: 'mishanga',
-        start: parseDate('2012.15.09 12:00')
+        start: parseDate('2012.09.15 12:00'),
+        description: 'Бла-бла-бла, бла! Бла-бла, бла?',
+        url: 'http://yadi.sk/d/VDsJ4ZUBiq6u'
       },
       {
         title: 'Task Tracker',
         lecturer: 'veged',
-        start: parseDate('2012.15.09 13:00')
+        start: parseDate('2012.09.15 13:00')
       },
       {
         title: 'Wiki',
         lecturer: 'Сергей Бережной',
-        start: parseDate('2012.15.09 14:00')
+        start: parseDate('2012.09.15 14:00'),
+        description: 'Материал клевый, лектор жжет!'
+      },
+      {
+        title: 'Командная строка Unix',
+        lecturer: 'Виктор Ашик',
+        start: parseDate('2012.09.18 19:00'),
+        description: 'Материал клевый, лектор жжет жжет жжет жжет жжет жжет жжет жжет жжет жжет!'
+      },
+      {
+        title: 'Редакторы кода',
+        lecturer: 'Вячеслав Олиянчук',
+        start: parseDate('2012.09.18 20:00'),
+        url: 'https://github.com/yandex-shri/lectures/blob/master/05-editors.md'
       }
     ]
   };

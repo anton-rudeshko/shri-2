@@ -17,13 +17,9 @@ require.config({
 /**
  * Application entry point
  */
-define('app', ['jquery', 'defaultData', 'DayModel', 'ScheduleView'], function ($, data, DayModel, ScheduleView) {
-  new ScheduleView({
+define('app', ['jquery', 'defaultData', 'ScheduleModel', 'ScheduleView'], function ($, data, ScheduleModel, ScheduleView) {
+  window.ScheduleView = new ScheduleView({
     el: $('#content'),
-    collection: [
-      new DayModel(data.lectures),
-      new DayModel([]),
-      new DayModel(data.lectures)
-    ]
+    model: new ScheduleModel(data.lectures)
   }).render();
 });
