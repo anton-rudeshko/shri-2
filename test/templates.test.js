@@ -1,4 +1,4 @@
-require(['handlebars'], function (Handlebars) {
+require(['handlebars', 'templates'], function (Handlebars) {
   TestCase('Handlebars', {
     'test Handlebars should be defined': function () {
       assertObject(Handlebars);
