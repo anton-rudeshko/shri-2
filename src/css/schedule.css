@@ -12,4 +12,8 @@
   .red {
     color: #f00;
   }
+
+  .schedule__version {
+    vertical-align: super;
+  }
 }
