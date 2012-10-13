@@ -1,7 +1,7 @@
 <div class="day__title-container">
     <div class="day__title">{{title}}</div>
 </div>
-<div class="day__events">
+<div class="day__events{{#if isToday}} day__today{{/if}}">
     <ul class="children"></ul>
     <div class="day__add-event">
         <div class="day__add-event__icon" title="Добавить ещё занятий в этот день"></div>

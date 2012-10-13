@@ -4,15 +4,21 @@ define('DayModel', ['backbone', 'EventCollection', 'EventModel', 'Common'], func
       events: [],
       empty: true,
       date: null,
-      title: ''
+      title: '',
+      isToday: false
     },
 
     initialize: function () {
-      this.set('title', Common.formatDayTitle(this.get('date')));
+      var date = this.get('date');
 
-      var eventModels = this.get('events').map(function (event) {
+      this.set('title', Common.formatDayTitle(date));
+      this.set('isToday', Common.isToday(date));
+
+      function createEvent(event) {
         return new EventModel(event);
-      });
+      }
+
+      var eventModels = this.get('events').map(createEvent);
       this.events = new EventCollection(eventModels);
       this.events.on('add remove', this.checkEmpty, this);
 
