@@ -1,4 +1,4 @@
-define('DayView', ['backbone', 'handlebars', 'EventView'], function (Backbone, Handlebars, EventView) {
+define('DayView', ['backbone', 'handlebars', 'EventView', 'templates'], function (Backbone, Handlebars, EventView) {
   return Backbone.View.extend({
     tagName: 'li',
     className: 'day',

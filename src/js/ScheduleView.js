@@ -1,4 +1,4 @@
-define('ScheduleView', ['backbone', 'handlebars', 'DayView'], function (Backbone, Handlebars, DayView) {
+define('ScheduleView', ['backbone', 'handlebars', 'DayView', 'templates'], function (Backbone, Handlebars, DayView) {
   return Backbone.View.extend({
     className: 'schedule',
     template: Handlebars.templates['schedule'],
