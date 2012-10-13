@@ -33,7 +33,9 @@ define('Common', function () {
 
     Keys: {
       ESCAPE: 27,
-      ENTER: 13
+      ENTER: 13,
+      UP: 38,
+      DOWN: 40
     },
 
     /**
