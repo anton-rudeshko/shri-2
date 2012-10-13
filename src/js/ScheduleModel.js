@@ -14,7 +14,7 @@ define('ScheduleModel', ['backbone', 'underscore', 'DayModel', 'DayCollection', 
       this.daysCollection.reset();
 
       function dateWithoutTime(event) {
-        return Common.cropTime(event.start).getTime();
+        return Common.cropTime(event.time).getTime();
       }
 
       var
@@ -49,8 +49,8 @@ define('ScheduleModel', ['backbone', 'underscore', 'DayModel', 'DayCollection', 
 
     getFirstDate: function (sortedEvents) {
       var date, event = sortedEvents[0];
-      if (event && event.start) {
-        date =  event.start;
+      if (event && event.time) {
+        date =  event.time;
       } else {
         date = new Date();
       }
@@ -59,8 +59,8 @@ define('ScheduleModel', ['backbone', 'underscore', 'DayModel', 'DayCollection', 
 
     getLastDate: function (sortedEvents) {
       var length = sortedEvents.length, date, event = sortedEvents[length - 1];
-      if (event && event.start) {
-        date =  event.start;
+      if (event && event.time) {
+        date =  event.time;
       } else {
         date = new Date();
       }

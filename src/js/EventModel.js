@@ -11,7 +11,7 @@ define('EventModel', ['backbone', 'Common'], function (Backbone, Common) {
        * {Date} [Required]
        * Start date and time
        */
-      start: null,
+      time: null,
 
       /**
        * {Number} [Optional]
@@ -28,12 +28,20 @@ define('EventModel', ['backbone', 'Common'], function (Backbone, Common) {
     },
 
     initialize: function (attrs) {
-      this.set(this.parse(attrs));
+      this.on('error', function (model, error) {
+        console.log(error);
+      });
+      if (attrs) {
+        this.set(this.parse(attrs));
+      }
     },
 
     validate: function (attrs) {
       if (!attrs.title) {
         return 'У лекции должна быть тема';
+      }
+      if (!attrs.time || !attrs.time.getTime) {
+        return 'Неверный формат времени';
       }
       if (attrs.length < Common.TEN_MINUTES) {
         return 'Длина лекции должна быть не меньше 10 минут';
@@ -42,9 +50,9 @@ define('EventModel', ['backbone', 'Common'], function (Backbone, Common) {
     },
 
     parse: function (response) {
-      var startDate = response.start;
-      if (typeof startDate === 'string') {
-        response.start = new Date(Date.parse(startDate));
+      var startTime = response.time;
+      if (typeof startTime === 'string') {
+        response.time = new Date(Date.parse(startTime));
       }
       return response;
     }

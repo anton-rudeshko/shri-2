@@ -4,7 +4,7 @@ define('EventCollection', ['backbone', 'EventModel', 'backbone.localstorage'], f
     localStorage: new Backbone.LocalStorage("EventCollection"),
 
     comparator: function (model) {
-      return model.get('start').getTime();
+      return model.get('time').getTime();
     }
   });
 });

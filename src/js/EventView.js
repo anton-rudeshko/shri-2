@@ -7,9 +7,9 @@ define('EventView', ['backbone', 'handlebars', 'Common', 'templates'], function 
     events: {
 //      'click': 'select',
 
-      'click    .event__title'      : 'editTitle',
-      'keyup    .event__title-input': 'onKeyUp',
-      'blur     .event__title-input': 'stopEditTitle'
+      'click .event__editable span' : 'edit',
+      'keyup .event__editable input': 'onKeyUp',
+      'blur  .event__editable input': 'confirmEdit'
     },
 
     initialize: function () {
@@ -17,39 +17,49 @@ define('EventView', ['backbone', 'handlebars', 'Common', 'templates'], function 
       this.model.bind('destroy', this.remove, this);
     },
 
-    render: function () {
+    prepareModel: function () {
       var model = this.model.toJSON();
-      model.formattedDate = Common.formatTime(model.start);
-      this.$el.html(this.template(model));
+      model.formattedDate = Common.formatTime(model.time);
+      return model;
+    },
 
-      this.titleInput = this.$('.event__title-input');
-      this.timeInput = this.$('.event__time-input');
-      this.lecturerInput = this.$('.event__lecturer-input');
-
+    render: function () {
+      this.$el.html(this.template(this.prepareModel()));
       return this;
     },
 
-    editTitle: function () {
-      this.$el.addClass('event__editing_title');
-      this.titleInput.focus().val(this.titleInput.val());
+    edit: function (e) {
+      var
+        targetSpan = $(e.currentTarget),
+        targetGroup = targetSpan.closest('.event__editable'),
+        targetInput = targetSpan.next('input');
+
+      targetGroup.addClass('event__editing');
+      targetInput.focus().val(targetInput.val());
     },
 
     onKeyUp: function(e) {
       if (e.keyCode === Common.Keys.ENTER) {
-        this.stopEditTitle();
+        this.confirmEdit(e);
       }
       if (e.keyCode === Common.Keys.ESCAPE) {
         this.render();
       }
     },
 
-    stopEditTitle: function () {
-      var value = Common.trimWhiteSpace(this.titleInput.val());
-      if (value) {
-        this.titleInput.val(value);
-        this.model.save({'title': value});
+    confirmEdit: function (e) {
+      var
+        targetInput = $(e.currentTarget),
+        targetGroup = targetInput.closest('.event__editable'),
+        value = Common.trimWhiteSpace(targetInput.val()),
+        fieldName = targetGroup.data('field');
+
+      if (value && fieldName) {
+        this.model.save(fieldName, value);
+        targetInput.val(this.model.get(fieldName));
       }
-      this.$el.removeClass("event__editing_title");
+
+      targetGroup.removeClass('event__editing');
     },
 
     select: function () {

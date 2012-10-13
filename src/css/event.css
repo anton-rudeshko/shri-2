@@ -6,6 +6,7 @@
   padding: .5em;
   margin: .5em;
   min-height: 1.5em;
+  min-width: 400px;
   line-height: 1.5em;
 
   background-color: #fff;
@@ -17,28 +18,30 @@
   transition: all .2s;
 }
 
+.event__lecturer {
+  color: #ccc;
+}
+
+.event__title,
+.event__time {
+  margin-right: 3px;
+}
+
 .event:hover {
   border: 1px solid #ddd;
   box-shadow: 0 0 5px #ddd;
 }
 
 .event:hover .event__lecturer {
-  color: #888;
+  color: #999;
 }
 
-.event__editing_title .event__title,
-.event__editing_lecturer .event__lecturer,
-.event__editing_time .event__time {
+.event__editable {
+  display: inline-block;
+}
+
+.event__editing .event__hide-on-edit {
   display: none;
-}
-
-.event__time {
-  margin-right: .2em;
-}
-
-.event__lecturer {
-  margin-left: .2em;
-  color: #aaa;
 }
 
 .event__resizer {
@@ -64,9 +67,7 @@
   background-color: #f8f5ec;
 }
 
-.event__title-input,
-.event__lecturer-input,
-.event__time-input {
+.event__show-on-edit {
   font-size: inherit;
   display: none;
   padding: 0;
@@ -74,9 +75,7 @@
   border: 1px solid #aaa;
 }
 
-.event__editing_title .event__title-input,
-.event__editing_lecturer .event__lecturer-input,
-.event__editing_time .event__time-input {
+.event__editing .event__show-on-edit {
   display: inline-block;
   border: none;
 }

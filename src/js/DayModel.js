@@ -5,7 +5,8 @@ define('DayModel', ['backbone', 'EventCollection', 'EventModel', 'Common'], func
       empty: true,
       date: null,
       title: '',
-      isToday: false
+      isToday: false,
+      emptyEvent: new EventModel()
     },
 
     initialize: function () {
@@ -30,7 +31,20 @@ define('DayModel', ['backbone', 'EventCollection', 'EventModel', 'Common'], func
     },
 
     addEmpty: function () {
-      this.events.add(new EventModel({start: new Date(), title: 'empty'}))
+      this.events.add(new EventModel({time: this.suggestTime()}))
+    },
+
+    suggestTime: function () {
+      var last = this.events.last(),
+        time, offset;
+      if (last) {
+        time = last.get('time').getTime();
+        offset = last.get('length');
+      } else {
+        time = Common.cropTime(new Date()).getTime();
+        offset = 9*Common.HOUR;
+      }
+      return new Date(time + offset);
     },
 
     parse: function (response) {

@@ -145,57 +145,57 @@ define('Common', function () {
       {
         title: 'Общий цикл разработки',
         lecturer: 'mishanga',
-        start: parseDate('2012.09.15 12:00'),
+        time: parseDate('2012.09.15 12:00'),
         description: 'Бла-бла-бла, бла! Бла-бла, бла?',
         url: 'http://yadi.sk/d/VDsJ4ZUBiq6u'
       },
       {
         title: 'Task Tracker',
         lecturer: 'veged',
-        start: parseDate('2012.09.15 13:00')
+        time: parseDate('2012.09.15 13:00')
       },
       {
         title: 'Wiki',
         lecturer: 'Сергей Бережной',
-        start: parseDate('2012.09.15 14:00'),
+        time: parseDate('2012.09.15 14:00'),
         description: 'Материал клевый, лектор жжет!'
       },
       {
         title: 'Командная строка Unix',
         lecturer: 'Виктор Ашик',
-        start: parseDate('2012.09.18 19:00'),
+        time: parseDate('2012.09.18 19:00'),
         description: 'Материал клевый, лектор жжет жжет жжет жжет жжет жжет жжет жжет жжет жжет!'
       },
       {
         title: 'Редакторы кода',
         lecturer: 'Вячеслав Олиянчук',
-        start: parseDate('2012.09.18 20:00'),
+        time: parseDate('2012.09.18 20:00'),
         url: 'https://github.com/yandex-shri/lectures/blob/master/05-editors.md'
       },
       {
         title: 'Браузеры',
         lecturer: 'Георгий Мостоловица',
-        start: parseDate('2012.09.20 19:00')
+        time: parseDate('2012.09.20 19:00')
       },
       {
         title: 'Системы контроля версий',
         lecturer: 'Георгий Мостоловица',
-        start: parseDate('2012.09.20 20:00')
+        time: parseDate('2012.09.20 20:00')
       },
       {
         title: 'Тестирование',
         lecturer: 'Марина Широчкина',
-        start: parseDate('2012.09.22 12:00')
+        time: parseDate('2012.09.22 12:00')
       },
       {
         title: 'Развертывание верстки',
         lecturer: 'Павел Пушкарев',
-        start: parseDate('2012.09.22 13:00')
+        time: parseDate('2012.09.22 13:00')
       },
       {
         title: 'HTTP-протокол',
         lecturer: 'Алексей Бережной',
-        start: parseDate('2012.09.22 14:00')
+        time: parseDate('2012.09.22 14:00')
       }
     ]
   };
