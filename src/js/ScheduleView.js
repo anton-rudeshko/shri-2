@@ -11,7 +11,7 @@ define('ScheduleView', ['backbone', 'handlebars', 'DayView', 'templates'], funct
       var els = this.model.daysCollection.map(function (model) {
         return new DayView({model: model}).render().el;
       });
-      this.$el.html(this.template()).find('.days').html(els);
+      this.$el.html(this.template()).find('.children').html(els);
       return this;
     },
 

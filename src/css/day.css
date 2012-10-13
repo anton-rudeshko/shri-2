@@ -1,7 +1,3 @@
-.days {
-
-}
-
 .day {
   width: 100%;
   margin: 5px;
@@ -29,10 +25,10 @@
   -o-transform-origin: 100% 100% 0;
   transform-origin: 100% 100% 0;
 
-  -moz-transition: all .2s;
-  -webkit-transition: all .2s;
-  -o-transition: all .2s;
-  transition: all .2s;
+  -moz-transition: all .5s;
+  -webkit-transition: all .5s;
+  -o-transition: all .5s;
+  transition: all .5s;
 }
 
 .day.expanded .day__title-container {
