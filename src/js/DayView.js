@@ -10,10 +10,14 @@ define('DayView', ['backbone', 'handlebars', 'EventView', 'templates'], function
 
     initialize: function () {
       this.model.bind('change:empty', this.toggleExpand, this);
+      this.model.events.bind('add', this.renderNewDay, this);
     },
 
     toggleExpand: function () {
-      this.$el.toggleClass('expanded', !this.model.get('empty'));
+      var notEmpty = !this.model.get('empty');
+      var titleWidth = this.$('.day__title').width();
+      var eventsHeight = this.$('.day__events').height();
+      this.$el.toggleClass('expanded', notEmpty && titleWidth <= eventsHeight);
     },
 
     renderEvent: function (eventModel) {
@@ -21,18 +25,23 @@ define('DayView', ['backbone', 'handlebars', 'EventView', 'templates'], function
     },
 
     render: function () {
-      this.toggleExpand();
       this.$el
         .html(this.template(this.model.toJSON()))
         .find('.children')
         .html(this.model.events.map(this.renderEvent));
+
+      this.toggleExpand();
+
       return this;
+    },
+
+    renderNewDay: function (model) {
+      this.$el.find('.children').append(this.renderEvent(model));
+      this.toggleExpand();
     },
 
     addNewDay: function () {
       this.model.addEmpty();
-      // todo: only append new
-      this.render();
     }
   });
 });
