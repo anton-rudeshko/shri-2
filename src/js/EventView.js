@@ -47,7 +47,7 @@ define('EventView', ['backbone', 'handlebars', 'Common', 'templates'], function 
       var value = Common.trimWhiteSpace(this.titleInput.val());
       if (value) {
         this.titleInput.val(value);
-        this.model.set({'title': value}); // todo: model.save
+        this.model.save({'title': value});
       }
       this.$el.removeClass("event__editing_title");
     },

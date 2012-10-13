@@ -18,17 +18,19 @@ require.config({
 /**
  * Application entry point
  */
-define([
-  'jquery', 'Common', 'ScheduleModel', 'ScheduleView',
-  'templates', 'backbone.localstorage'
-], function ($, Common, ScheduleModel, ScheduleView) {
+define('app', [
+  'jquery', 'ScheduleModel', 'ScheduleView'
+], function ($, ScheduleModel, ScheduleView) {
   if (!window.localStorage) {
     $('.start-info').text('К сожалению, Ваш браузер не поддерживает localStorage');
     return;
   }
 
+  var scheduleModel = new ScheduleModel();
+  scheduleModel.fetch();
+
   window.ScheduleView = new ScheduleView({
     el: $('.content'),
-    model: new ScheduleModel(Common.lectures)
+    model: scheduleModel
   }).render();
 });

@@ -1,5 +1,7 @@
-define('DayCollection', ['backbone', 'DayModel'], function (Backbone, DayModel) {
+define('DayCollection', ['backbone', 'DayModel', 'backbone.localstorage'], function (Backbone, DayModel) {
   return Backbone.Collection.extend({
+    localStorage: new Backbone.LocalStorage("DayCollection"),
+
     model: DayModel
   });
 });

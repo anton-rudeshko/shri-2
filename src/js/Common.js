@@ -69,6 +69,26 @@ define('Common', function () {
     },
 
     /**
+     * Remove time information from date
+     * @param {Date} date
+     * @return {Date}
+     */
+    cropTime: function (date) {
+      return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    },
+
+    /**
+     * Increase or decrease date (day of month) by delta
+     * @param {Date} date
+     * @param {Number} delta
+     * @return {Date}
+     */
+    changeDate: function (date, delta) {
+      date.setDate(date.getDate() + delta);
+      return date;
+    },
+
+    /**
      * Format date to dd.MM
      * @param date
      * @return {String}
@@ -85,6 +105,9 @@ define('Common', function () {
      * @return {String}
      */
     formatTime: function (date) {
+      if (!date) {
+        return '';
+      }
       var hours = this.padLeft(date.getHours() + ''),
         minutes = this.padLeft(date.getMinutes() + '');
       return hours + ':' + minutes;
