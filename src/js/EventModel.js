@@ -1,16 +1,11 @@
-define("EventModel", ["backbone"], function (Backbone) {
-  var
-    SECOND = 1000,
-    MINUTE = 60*SECOND,
-    HOUR = 60*MINUTE;
-
+define('EventModel', ['backbone', 'Common'], function (Backbone, Common) {
   return Backbone.Model.extend({
     defaults: {
       /**
        * {String} [Required]
        * Lecture title
        */
-      title: "",
+      title: '',
 
       /**
        * {Date} [Required]
@@ -23,23 +18,23 @@ define("EventModel", ["backbone"], function (Backbone) {
        * Lecture length in millis
        * By default - 1 hour
        */
-      length: HOUR,
+      length: Common.HOUR,
 
       /**
        * {String} [Optional]
        * Lecturer
        */
-      lecturer: ""
+      lecturer: ''
     },
 
     validate: function (attrs) {
       if (!attrs.title) {
-        return "У лекции должна быть тема";
+        return 'У лекции должна быть тема';
       }
-      if (attrs.length < 10*MINUTE) {
-        return "Длина лекции должна быть не меньше 10 минут";
+      if (attrs.length < Common.TEN_MINUTES) {
+        return 'Длина лекции должна быть не меньше 10 минут';
       }
-      return "";
+      return '';
     }
   });
 });

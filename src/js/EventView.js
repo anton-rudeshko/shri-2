@@ -1,8 +1,4 @@
-define('EventView', ['backbone', 'handlebars'], function (Backbone, Handlebars) {
-  var
-    ESCAPE = 27,
-    ENTER = 13;
-
+define('EventView', ['backbone', 'handlebars', 'Common'], function (Backbone, Handlebars, Common) {
   return Backbone.View.extend({
     tagName: 'li',
     className: 'event',
@@ -13,7 +9,7 @@ define('EventView', ['backbone', 'handlebars'], function (Backbone, Handlebars) 
 
       'click    .event__title'      : 'editTitle',
       'keyup    .event__title-input': 'onKeyUp',
-      'blur     .event__title-input': 'close'
+      'blur     .event__title-input': 'stopEditTitle'
     },
 
     initialize: function () {
@@ -23,7 +19,7 @@ define('EventView', ['backbone', 'handlebars'], function (Backbone, Handlebars) 
 
     render: function () {
       var model = this.model.toJSON();
-      model.formattedDate = this.formatDate(model.start);
+      model.formattedDate = Common.formatTime(model.start);
       this.$el.html(this.template(model));
 
       this.titleInput = this.$('.event__title-input');
@@ -33,59 +29,31 @@ define('EventView', ['backbone', 'handlebars'], function (Backbone, Handlebars) 
       return this;
     },
 
-    formatDate: function (date) {
-      var hours, minutes;
-      if (!date) {
-        return '';
-      }
-      hours = this.padLeft(date.getHours() + '');
-      minutes = this.padLeft(date.getMinutes() + '');
-      return hours + ':' + minutes;
-    },
-
-    /**
-     * Pad string left with two zeroes
-     * @param {String} str
-     * @return {String}
-     */
-    padLeft: function (str) {
-      var pad = '00';
-      return pad.substring(0, pad.length - str.length) + str;
-    },
-
     editTitle: function () {
       this.$el.addClass('event__editing_title');
       this.titleInput.focus().val(this.titleInput.val());
     },
 
     onKeyUp: function(e) {
-      if (e.keyCode === ENTER) {
-        this.close();
+      if (e.keyCode === Common.Keys.ENTER) {
+        this.stopEditTitle();
       }
-      if (e.keyCode === ESCAPE) {
+      if (e.keyCode === Common.Keys.ESCAPE) {
         this.render();
       }
     },
 
-    close: function () {
-      var value = this.trimWhiteSpace(this.titleInput.val());
+    stopEditTitle: function () {
+      var value = Common.trimWhiteSpace(this.titleInput.val());
       if (value) {
         this.titleInput.val(value);
-        this.model.set({'title': value});
+        this.model.set({'title': value}); // todo: model.save
       }
       this.$el.removeClass("event__editing_title");
     },
 
     select: function () {
       this.$el.toggleClass('selected');
-    },
-
-    trimWhiteSpace: function (str) {
-      if (!str) {
-        return str;
-      }
-      return str.replace(/^\s\s*/, '').replace(/\s\s*$/, '').replace(/\s+/g,' ');
     }
-
   });
 });
