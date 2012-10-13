@@ -11,7 +11,7 @@ define('EventModel', ['backbone', 'Common'], function (Backbone, Common) {
        * {Date} [Required]
        * Start date and time
        */
-      start: 0,
+      start: null,
 
       /**
        * {Number} [Optional]
