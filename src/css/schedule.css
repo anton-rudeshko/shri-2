@@ -6,7 +6,6 @@
 
   .schedule__header {
     font-size: 2em;
-    margin: 1em;
   }
 
   .red {
@@ -15,5 +14,22 @@
 
   .schedule__version {
     vertical-align: super;
+  }
+
+  .schedule__start-again {
+    display: block;
+    width: 100%;
+    text-align: left;
+    font-size: 10px;
+  }
+
+  .schedule__start-again__button {
+    display: inline-block;
+    margin: 10px auto 0;
+    cursor: pointer;
+
+    color: #aaa;
+    text-decoration: none;
+    border-bottom: 1px dashed #aaa;
   }
 }

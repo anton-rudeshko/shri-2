@@ -11,9 +11,7 @@ define('ScheduleModel', ['backbone', 'underscore', 'DayModel', 'DayCollection', 
     },
 
     initFromJson: function (events) {
-      if (!events || !events.length) {
-        return;
-      }
+      this.daysCollection.reset();
 
       function dateWithoutTime(event) {
         return Common.cropTime(event.start).getTime();
