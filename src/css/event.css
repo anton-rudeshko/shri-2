@@ -2,6 +2,7 @@
   font-size: 14px;
   list-style: none;
 
+  position: relative;
   padding: .5em;
   margin: .5em;
   width: 30em;
@@ -26,11 +27,13 @@
   color: #888;
 }
 
-.event__editing_title .event__title {
+.event__editing_title .event__title,
+.event__editing_lecturer .event__lecturer,
+.event__editing_time .event__time {
   display: none;
 }
 
-.event__start-time {
+.event__time {
   margin-right: .2em;
 }
 
@@ -39,11 +42,32 @@
   color: #aaa;
 }
 
+.event__resizer {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  visibility: hidden;
+  cursor: ns-resize;
+  height: 7px;
+}
+
+.event__resize-icon {
+  border-bottom: 3px double #aaa;
+  width: 10px;
+  margin: 0 auto;
+}
+
+.event:hover .event__resizer {
+  visibility: visible;
+}
+
 .event.selected {
   background-color: #f8f5ec;
 }
 
-.event__title-input {
+.event__title-input,
+.event__lecturer-input,
+.event__time-input {
   font-size: inherit;
   display: none;
   padding: 0;
@@ -51,7 +75,9 @@
   border: 1px solid #aaa;
 }
 
-.event__editing_title .event__title-input {
+.event__editing_title .event__title-input,
+.event__editing_lecturer .event__lecturer-input,
+.event__editing_time .event__time-input {
   display: inline-block;
   border: none;
 }

@@ -1,6 +1,11 @@
-<span class="event__start-time">{{formattedDate}}</span>
+<span class="event__time">{{formattedDate}}</span>
+<input class="event__time-input" value="{{formattedDate}}" />
 <span class="event__title" title="Дважды кликните для редактирования">{{title}}</span>
-<input class="event__title-input" value="{{title}}" />
+<input class="event__title-input" placeholder="Тема лекции" value="{{title}}" />
 {{#if lecturer}}
 <span class="event__lecturer">({{lecturer}})</span>
 {{/if}}
+<input class="event__lecturer-input" placeholder="Кто читает?" value="{{lecturer}}" />
+<div class="event__resizer">
+    <div class="event__resize-icon"></div>
+</div>

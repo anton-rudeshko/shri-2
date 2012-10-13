@@ -9,10 +9,10 @@ define('EventView', ['backbone', 'handlebars'], function (Backbone, Handlebars) 
     template: Handlebars.templates['event'],
 
     events: {
-      'click': 'select',
+//      'click': 'select',
 
-      'dblclick .event__title'      : 'editTitle',
-      'keyup    .event__title-input': 'updateOnEnter',
+      'click    .event__title'      : 'editTitle',
+      'keyup    .event__title-input': 'onKeyUp',
       'blur     .event__title-input': 'close'
     },
 
@@ -26,7 +26,9 @@ define('EventView', ['backbone', 'handlebars'], function (Backbone, Handlebars) 
       model.formattedDate = this.formatDate(model.start);
       this.$el.html(this.template(model));
 
-      this.input = this.$('.event__title-input');
+      this.titleInput = this.$('.event__title-input');
+      this.timeInput = this.$('.event__time-input');
+      this.lecturerInput = this.$('.event__lecturer-input');
 
       return this;
     },
@@ -53,10 +55,10 @@ define('EventView', ['backbone', 'handlebars'], function (Backbone, Handlebars) 
 
     editTitle: function () {
       this.$el.addClass('event__editing_title');
-      this.input.focus().val(this.input.val());
+      this.titleInput.focus().val(this.titleInput.val());
     },
 
-    updateOnEnter: function(e) {
+    onKeyUp: function(e) {
       if (e.keyCode === ENTER) {
         this.close();
       }
@@ -66,9 +68,9 @@ define('EventView', ['backbone', 'handlebars'], function (Backbone, Handlebars) 
     },
 
     close: function () {
-      var value = this.trimWhiteSpace(this.input.val());
+      var value = this.trimWhiteSpace(this.titleInput.val());
       if (value) {
-        this.input.val(value);
+        this.titleInput.val(value);
         this.model.set({'title': value});
       }
       this.$el.removeClass("event__editing_title");
