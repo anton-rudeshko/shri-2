@@ -4,7 +4,8 @@ define('ScheduleView', ['backbone', 'handlebars', 'DayView', 'templates'], funct
     template: Handlebars.templates['schedule'],
 
     events: {
-      'click .schedule__start-again__button': 'startAgain'
+      'click .schedule__start-again__button': 'startAgain',
+      'click .schedule__print__button': 'print'
     },
 
     render: function () {
@@ -19,6 +20,10 @@ define('ScheduleView', ['backbone', 'handlebars', 'DayView', 'templates'], funct
       window.localStorage.clear();
       this.model.initFromJson([]);
       this.render();
+    },
+
+    print: function () {
+
     }
   });
 });
