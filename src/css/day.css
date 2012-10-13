@@ -57,6 +57,7 @@
 
 .day__add-event {
   cursor: pointer;
+  padding-left: 1em;
 }
 
 .day__add-event__icon {
