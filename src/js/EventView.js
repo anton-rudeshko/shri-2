@@ -1,4 +1,4 @@
-define('EventView', ['backbone', 'handlebars', 'Common'], function (Backbone, Handlebars, Common) {
+define('EventView', ['backbone', 'handlebars', 'Common', 'templates'], function (Backbone, Handlebars, Common) {
   return Backbone.View.extend({
     tagName: 'li',
     className: 'event',
