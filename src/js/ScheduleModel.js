@@ -42,6 +42,8 @@ define('ScheduleModel', ['backbone', 'underscore', 'DayModel', 'DayCollection', 
       if (this.daysCollection.isEmpty()) {
         console.log('Days collection is empty, performing first load');
         this.initFromJson(Common.lectures || []);
+      } else {
+        console.log('Loaded from localStorage');
       }
     },
 

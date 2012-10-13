@@ -25,6 +25,11 @@ define('DayModel', ['backbone', 'EventCollection', 'EventModel', 'Common'], func
 
     addEmpty: function () {
       this.events.add(new EventModel({start: new Date(), title: 'empty'}))
+    },
+
+    parse: function (response) {
+      response.date = new Date(Date.parse(response.date));
+      return response;
     }
   });
 });
