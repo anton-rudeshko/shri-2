@@ -4,6 +4,10 @@ define('ScheduleModel', ['backbone', 'underscore', 'DayModel', 'DayCollection', 
 
     initialize: function () {
       this.daysCollection = new DayCollection();
+      this.daysCollection.on('add', function (model) {
+        model.save();
+      });
+      // todo: on remove?
     },
 
     initFromJson: function (events) {
@@ -21,20 +25,18 @@ define('ScheduleModel', ['backbone', 'underscore', 'DayModel', 'DayCollection', 
         firstDay = this.getFirstDate(sortedEvents),
         lastDay = this.getLastDate(sortedEvents),
         dateIterator = new Date(firstDay.getTime()),
-        lastDayTime = lastDay.getTime();
+        lastDayTime = lastDay.getTime(),
+        days = [];
 
       while (dateIterator.getTime() <= lastDayTime) {
-        this.daysCollection.add(new DayModel({
+        days.push(new DayModel({
           events: groupedEvents[dateIterator.getTime()] || [],
           date: new Date(dateIterator.getTime())
         }));
         Common.changeDate(dateIterator, +1);
       }
-    },
 
-    addDayModel: function (lectures, date) {
-      // todo: add empty days
-      this.daysCollection.add(new DayModel({events: lectures, date: date}));
+      this.daysCollection.add(days)
     },
 
     fetch: function () {
