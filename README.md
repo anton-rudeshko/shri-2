@@ -2,9 +2,9 @@
 
 ## Использованные инструменты:
 
-* Багтрекер [Trello](https://trello.com/b/lMYuJiXT)
+* [Багтрекер](https://trello.com/b/lMYuJiXT)
 * Редакторы:
-    * [Intellij IDEA 12](http://www.jetbrains.com/idea/)
+    * [Intellij IDEA 11+12](http://www.jetbrains.com/idea/)
     * [Sublime Text 2](sublimetext.com/2)
 * Фреймворки:
     * [require.js](http://requirejs.org/)
