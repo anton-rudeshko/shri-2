@@ -15,18 +15,17 @@
   display: block;
   width: 100%;
   text-align: left;
-  font-size: 10px;
 }
 
 .schedule__button {
   display: inline-block;
+  font-size: 10px;
   margin-top: 10px;
   margin-right: 5px;
   cursor: pointer;
 
   color: #aaa;
   text-decoration: none;
-  border-bottom: 1px dashed #aaa;
 }
 
 .schedule__button:hover {
@@ -35,7 +34,7 @@
 }
 
 .schedule__add-day {
-  cursor: pointer;
+  text-align: center;
 }
 
 @media (min-width: 960px) {
