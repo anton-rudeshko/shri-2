@@ -1,8 +1,9 @@
-define('EventView', ['backbone', 'handlebars', 'Common', 'templates'], function (Backbone, Handlebars, Common) {
+define('EventView', ['backbone', 'handlebars', 'Common', 'templates', 'maskedinput'], function (Backbone, Handlebars, Common) {
   return Backbone.View.extend({
     tagName: 'li',
     className: 'event',
     template: Handlebars.templates['event'],
+    timeMask: '99:99',
 
     events: {
 //      'click': 'select',
@@ -30,6 +31,7 @@ define('EventView', ['backbone', 'handlebars', 'Common', 'templates'], function 
 
     render: function () {
       this.$el.html(this.template(this.prepareModel()));
+      this.$('.event__time-input').mask(this.timeMask);
       return this;
     },
 
