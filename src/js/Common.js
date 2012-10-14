@@ -18,7 +18,7 @@ define('Common', function () {
       day = dateParts[2],
       hour = dateParts[3],
       minute = dateParts[4];
-    return new Date(year, month, day, hour, minute);
+    return new Date(year, month, day, hour, minute).getTime();
   }
 
   return {

@@ -1,4 +1,4 @@
-define('ScheduleView', ['backbone', 'handlebars', 'underscore', 'DayView', 'templates'], function (Backbone, Handlebars, _, DayView) {
+define('ScheduleView', ['backbone', 'handlebars', 'underscore', 'toastr', 'DayView', 'templates'], function (Backbone, Handlebars, _, toastr, DayView) {
   return Backbone.View.extend({
     className: 'schedule',
     template: Handlebars.templates['schedule'],
@@ -7,7 +7,12 @@ define('ScheduleView', ['backbone', 'handlebars', 'underscore', 'DayView', 'temp
       'click .schedule__start-again__button': 'startAgain',
       'click .schedule__print__button'      : 'print',
       'click .schedule__load-2012__button'  : 'load2012',
-      'click .schedule__add-day__button'    : 'addDay'
+      'click .schedule__add-day__button'    : 'addDay',
+      'click .schedule__toggle-import-export__button': 'toggleImportExport',
+      'click .schedule__export-json__button': 'exportJson',
+      'click .schedule__import-json__button': 'importJson',
+      'click .schedule__export-ical__button': 'exportIcal',
+      'click .schedule__textarea'           : 'selectTextareaText'
     },
 
     initialize: function () {
@@ -47,6 +52,7 @@ define('ScheduleView', ['backbone', 'handlebars', 'underscore', 'DayView', 'temp
 
       _.each(views, checkExpand);
 
+      this.textarea = this.$('.schedule__textarea');
       this.views = views;
       this.$el.removeClass('schedule__loading');
       return this;
@@ -81,6 +87,44 @@ define('ScheduleView', ['backbone', 'handlebars', 'underscore', 'DayView', 'temp
 
     addDay: function () {
       this.model.addNewDay();
+    },
+
+    toggleImportExport: function () {
+      var container = this.$('.schedule__textarea-container');
+      container.slideToggle(container.is(':visible'));
+    },
+
+    selectTextareaText: function () {
+      this.textarea.select();
+    },
+
+    exportJson: function () {
+      var events = this.model.prepareEventsForExport();
+      var text = JSON.stringify(events);
+      this.textarea.val(text);
+      this.textarea.select();
+    },
+
+    importJson: function () {
+      var parsed,
+        text = this.textarea.val();
+      if (!text) {
+        toastr.warning('Импортируем пустое расписание!');
+      }
+      try {
+        parsed = JSON.parse(text || '[]');
+      } catch (e) {
+        toastr.error('К сожалению, Ваш JSON весьма невалиден: ' + e, 'ЕГОР');
+        return;
+      }
+      window.localStorage.clear();
+      this.model.initFromJson(parsed);
+      this.render();
+      toastr.info('Готово!');
+    },
+
+    exportIcal: function () {
+
     }
   });
 });

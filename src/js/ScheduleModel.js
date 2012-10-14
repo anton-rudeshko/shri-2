@@ -19,6 +19,11 @@ define('ScheduleModel', ['backbone', 'underscore', 'DayModel', 'DayCollection', 
         return Common.cropTime(event.time).getTime();
       }
 
+      events = _(events).map(function (event) {
+        event.time = new Date(event.time);
+        return event;
+      });
+
       var
         sortedEvents = _(events).sortBy(dateWithoutTime),
         groupedEvents = _(events).groupBy(dateWithoutTime),
@@ -49,23 +54,23 @@ define('ScheduleModel', ['backbone', 'underscore', 'DayModel', 'DayCollection', 
       }
     },
 
+    getEventTimeOrToday: function (event) {
+      return event && event.time ? Common.cloneDate(event.time) : new Date();
+    },
+
     getFirstDate: function (sortedEvents) {
-      var date, event = sortedEvents[0];
-      if (event && event.time) {
-        date =  event.time;
-      } else {
-        date = new Date();
-      }
+      var
+        event = sortedEvents[0],
+        date = this.getEventTimeOrToday(event);
+
       return Common.cropTime(Common.changeDate(date, -2)); // two days back
     },
 
     getLastDate: function (sortedEvents) {
-      var length = sortedEvents.length, date, event = sortedEvents[length - 1];
-      if (event && event.time) {
-        date =  event.time;
-      } else {
-        date = new Date();
-      }
+      var
+        event = sortedEvents[sortedEvents.length - 1],
+        date = this.getEventTimeOrToday(event);
+
       return Common.cropTime(Common.changeDate(date, +4)); // four days forward
     },
 
@@ -76,12 +81,25 @@ define('ScheduleModel', ['backbone', 'underscore', 'DayModel', 'DayCollection', 
     },
 
     suggestDate: function () {
-      var last = this.get('days').last()
+      var last = this.get('days').last();
       if (last) {
         return Common.changeDate(Common.cloneDate(last.get('date')), +1);
       } else {
         return Common.cropTime(new Date());
       }
+    },
+
+    prepareEventsForExport: function () {
+      var events = [];
+      this.get('days').each(function (day) {
+        day.get('events').each(function (event) {
+          var item = event.toJSON();
+          delete item.id;
+          item.time = event.get('time').getTime();
+          events.push(item);
+        })
+      });
+      return events;
     }
   });
 });
