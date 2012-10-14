@@ -13,6 +13,11 @@ define('ScheduleView', ['backbone', 'handlebars', 'underscore', 'DayView', 'temp
     initialize: function () {
       var days = this.model.get('days');
       days.on('add', this.renderNewDay, this);
+      days.on('remove', this.removeDayView, this);
+    },
+
+    removeDayView: function (model) {
+      this.views[model.get('date').getTime()].$el.remove();
     },
 
     renderDay: function (model) {
@@ -20,23 +25,30 @@ define('ScheduleView', ['backbone', 'handlebars', 'underscore', 'DayView', 'temp
     },
 
     render: function () {
+      this.$el.addClass('schedule__loading');
+
       function checkExpand(view) {
         view.checkNeedExpand();
       }
 
-      function extractElement(view) {
-        return view.el;
+      function renderAndGetEl(view) {
+        return view.render().el;
       }
 
-      var views = this.model.get('days').map(this.renderDay);
+      var days = this.model.get('days'),
+        views = {};
 
-      this.$el.addClass('schedule__loading').html(this.template())
-        .find('.schedule__days').html(views.map(extractElement));
+      days.each(function (model) {
+        views[model.get('date').getTime()] = new DayView({model: model});
+      });
+
+      this.$el.html(this.template())
+        .find('.schedule__days').html(_.map(views, renderAndGetEl));
 
       _.each(views, checkExpand);
 
+      this.views = views;
       this.$el.removeClass('schedule__loading');
-
       return this;
     },
 
@@ -62,7 +74,9 @@ define('ScheduleView', ['backbone', 'handlebars', 'underscore', 'DayView', 'temp
     },
 
     renderNewDay: function (model) {
-      this.$el.find('.schedule__days').append(this.renderDay(model).el);
+      var view = this.renderDay(model);
+      this.views[model.get('date').getTime()] = view;
+      this.$el.find('.schedule__days').append(view.el);
     },
 
     addDay: function () {

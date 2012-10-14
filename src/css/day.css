@@ -7,6 +7,7 @@
 .day__title-container {
   vertical-align: top;
   width: 20%;
+  min-height: 20px;
   min-width: 100px;
   display: inline-block;
   position: relative;
@@ -96,6 +97,21 @@
 
 .day__add-event:hover .day__add-event__icon {
   opacity: 1 !important;
+}
+
+.day__remove {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 16px;
+  height: 16px;
+  background: url("../pix/icon-remove.png");
+  cursor: pointer;
+}
+
+.day__title-container:hover .day__remove {
+  display: block;
 }
 
 @media print {

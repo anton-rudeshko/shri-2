@@ -5,7 +5,8 @@ define('DayView', ['backbone', 'handlebars', 'EventView', 'Common', 'templates']
     template: Handlebars.templates['day'],
 
     events: {
-      'click .day__add-event': 'addNewEvent'
+      'click .day__add-event': 'addNewEvent',
+      'click .day__remove': 'removeDay'
     },
 
     initialize: function () {
@@ -69,10 +70,15 @@ define('DayView', ['backbone', 'handlebars', 'EventView', 'Common', 'templates']
       this.checkNeedExpand();
     },
 
-    addNewEvent: function (e) {
+    addNewEvent: function () {
       this.model.addEmptyEvent();
-      e.preventDefault();
-      return false;
+    },
+
+    removeDay: function () {
+      this.model.get('events').each(function (event) {
+        event.destroy();
+      });
+      this.model.destroy();
     }
   });
 });
