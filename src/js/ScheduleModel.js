@@ -1,17 +1,19 @@
 define('ScheduleModel', ['backbone', 'underscore', 'DayModel', 'DayCollection', 'Common'], function (Backbone, _, DayModel, DayCollection, Common) {
   return Backbone.Model.extend({
     initialize: function () {
-      this.daysCollection = new (DayCollection.extend({
+      var days = new (DayCollection.extend({
         localStorage: new Backbone.LocalStorage("Days")
       }))();
 
-      this.daysCollection.on('add', function (model) {
+      days.on('add', function (model) {
         model.save();
       });
+
+      this.set('days', days);
     },
 
     initFromJson: function (events) {
-      this.daysCollection.reset();
+      this.get('days').reset();
 
       function dateWithoutTime(event) {
         return Common.cropTime(event.time).getTime();
@@ -35,12 +37,12 @@ define('ScheduleModel', ['backbone', 'underscore', 'DayModel', 'DayCollection', 
         Common.changeDate(dateIterator, +1);
       }
 
-      this.daysCollection.add(days)
+      this.get('days').add(days)
     },
 
     fetch: function () {
-      this.daysCollection.fetch();
-      if (this.daysCollection.isEmpty()) {
+      this.get('days').fetch();
+      if (this.get('days').isEmpty()) {
         this.initFromJson(Common.lectures || []);
       } else {
         console.log('Loaded from localStorage');
@@ -70,11 +72,11 @@ define('ScheduleModel', ['backbone', 'underscore', 'DayModel', 'DayCollection', 
     addNewDay: function () {
       var date = this.suggestDate();
       date = Common.cropTime(date);
-      this.daysCollection.add(new DayModel({ date: date }));
+      this.get('days').add(new DayModel({ date: date }));
     },
 
     suggestDate: function () {
-      var last = this.daysCollection.last()
+      var last = this.get('days').last()
       if (last) {
         return Common.changeDate(Common.cloneDate(last.get('date')), +1);
       } else {
