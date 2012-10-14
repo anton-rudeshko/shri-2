@@ -30,7 +30,7 @@ define('EventView', ['backbone', 'handlebars', 'Common', 'templates', 'maskedinp
     },
 
     render: function () {
-      this.$el.html(this.template(this.prepareModel()));
+      this.$el.html(this.template(this.prepareModel())).toggleClass('event__empty', this.model.isEmpty());
       this.$('.event__time-input').mask(this.timeMask);
       return this;
     },

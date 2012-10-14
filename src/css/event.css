@@ -22,22 +22,34 @@
   font: inherit;
 }
 
+.event__empty {
+  border: 1px dashed #aaa !important;
+}
+
 .event__lecturer {
   color: #ccc;
 }
 
 .event__title,
 .event__time {
+  display: inline-block;
   margin-right: 3px;
+}
+
+.event__title.event__empty-field  {
+  width: 177px;
 }
 
 .event__time {
   width: 37px;
-  display: inline-block;
 }
 
 .event__time-input {
   width: 40px;
+}
+
+.event__title-input {
+  width: 180px;
 }
 
 .event:hover {
@@ -69,6 +81,11 @@
 
 .event__delete_button:hover {
   opacity: 1 !important;
+}
+
+.event__empty-field,
+.event__empty .event__time {
+  color: #eee !important;
 }
 
 .event__editable {

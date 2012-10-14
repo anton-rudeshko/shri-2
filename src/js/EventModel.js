@@ -37,9 +37,6 @@ define('EventModel', ['backbone', 'Common'], function (Backbone, Common) {
     },
 
     validate: function (attrs) {
-      if (!attrs.title) {
-        return 'У лекции должна быть тема';
-      }
       if (!attrs.time || !attrs.time.getTime) {
         return 'Неверный формат времени';
       }
@@ -55,6 +52,10 @@ define('EventModel', ['backbone', 'Common'], function (Backbone, Common) {
         response.time = new Date(Date.parse(startTime));
       }
       return response;
+    },
+
+    isEmpty: function () {
+      return !this.get('title');
     }
   });
 });
