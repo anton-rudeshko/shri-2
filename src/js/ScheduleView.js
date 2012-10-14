@@ -29,8 +29,13 @@ define('ScheduleView', ['backbone', 'handlebars', 'underscore', 'DayView', 'temp
       }
 
       var views = this.model.daysCollection.map(this.renderDay);
-      this.$el.html(this.template()).find('.schedule__days').html(views.map(extractElement));
+
+      this.$el.addClass('schedule__loading').html(this.template())
+        .find('.schedule__days').html(views.map(extractElement));
+
       _.each(views, checkExpand);
+
+      this.$el.removeClass('schedule__loading');
 
       return this;
     },

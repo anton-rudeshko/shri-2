@@ -32,6 +32,13 @@
   transition: transform .5s;
 }
 
+.schedule__loading .day__title {
+  -moz-transition: none;
+  -webkit-transition: none;
+  -o-transition: none;
+  transition: none;
+}
+
 .day:hover .day__title {
   color: #999;
 }
