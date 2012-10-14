@@ -29,7 +29,10 @@ define('ScheduleView', ['backbone', 'handlebars', 'DayView', 'templates'], funct
     },
 
     load2012: function () {
-
+      toastr.info('Загружаем лекции 2012');
+      window.localStorage.clear();
+      this.model.fetch();
+      this.render();
     }
   });
 });
