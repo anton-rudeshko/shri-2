@@ -103,6 +103,10 @@
   opacity: 1 !important;
 }
 
+.day.day__full .day__add-event {
+  display: none;
+}
+
 .day__remove {
   display: none;
   position: absolute;

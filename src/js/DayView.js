@@ -1,4 +1,6 @@
 define('DayView', ['backbone', 'handlebars', 'EventView', 'Common', 'templates'], function (Backbone, Handlebars, EventView, Common) {
+  var MAX_EVENTS = 5;
+
   return Backbone.View.extend({
     tagName: 'li',
     className: 'day',
@@ -14,6 +16,7 @@ define('DayView', ['backbone', 'handlebars', 'EventView', 'Common', 'templates']
 
       events.on('add', this.renderNewEvent, this);
       events.on('add remove', this.checkNeedExpand, this);
+      events.on('add remove', this.checkNeedHideAdd, this);
       events.on('reset', this.render, this);
     },
 
@@ -28,6 +31,11 @@ define('DayView', ['backbone', 'handlebars', 'EventView', 'Common', 'templates']
         classSwitch = notEmpty && titleWidth <= eventsHeight;
 
       this.$el.toggleClass('expanded', classSwitch);
+    },
+
+    checkNeedHideAdd: function () {
+      var isDayFull = this.getEvents().length >= MAX_EVENTS;
+      this.$el.toggleClass('day__full', isDayFull);
     },
 
     renderEvent: function (eventModel) {
