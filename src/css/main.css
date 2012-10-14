@@ -15,8 +15,9 @@ html, body {
 }
 
 .content {
-  overflow: auto;
+  overflow: hidden;
   padding-bottom: 50px;
+  min-width: 750px;
 }
 
 .start-info {

@@ -146,4 +146,8 @@
   .event__show-on-edit {
     display: none !important;
   }
+
+  .event__empty-field {
+    display: none !important;
+  }
 }

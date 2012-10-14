@@ -72,7 +72,8 @@
     text-align: center;
   }
 
-  .schedule__buttons {
-    text-align: center;
+  .schedule__buttons,
+  .schedule__button {
+    display: none;
   }
 }
