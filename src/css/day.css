@@ -57,6 +57,10 @@
   color: #555;
 }
 
+.day.day__future .day__events {
+  border-left: 3px solid #ece9d6;
+}
+
 .day.expanded .day__title  {
   -ms-transform:     translate(0, -100%) rotate(-90deg);
   -webkit-transform: translate(0, -100%) rotate(-90deg);
@@ -66,7 +70,7 @@
 }
 
 .day__events {
-  border-left: 3px solid #ccc;
+  border-left: 3px solid #ddd;
   display: inline-block;
   min-height: 20px;
   width: 50%;
