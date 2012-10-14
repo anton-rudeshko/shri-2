@@ -36,6 +36,7 @@
     * [Backbone.js](http://backbonejs.org/) + [localStorage](https://github.com/jeromegn/Backbone.localStorage)
     * [Underscore.js](http://underscorejs.org/)
     * [jQuery](http://jquery.com/)
+    * [toastr](https://github.com/CodeSeven/toastr)
 * Юнит тесты: [JsTestDriver](http://code.google.com/p/js-test-driver/)
 * Шаблонизатор: [Handlebars](http://handlebarsjs.com)
 * Сборка:
