@@ -22,10 +22,12 @@ define('ScheduleView', ['backbone', 'handlebars', 'DayView', 'templates'], funct
       window.localStorage.clear();
       this.model.initFromJson([]);
       this.render();
+      return false;
     },
 
     print: function () {
       window.print();
+      return false;
     },
 
     load2012: function () {
@@ -33,6 +35,7 @@ define('ScheduleView', ['backbone', 'handlebars', 'DayView', 'templates'], funct
       window.localStorage.clear();
       this.model.fetch();
       this.render();
+      return false;
     }
   });
 });
