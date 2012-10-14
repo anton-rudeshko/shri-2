@@ -56,6 +56,22 @@ define('EventModel', ['backbone', 'Common'], function (Backbone, Common) {
 
     isEmpty: function () {
       return !this.get('title');
+    },
+
+    toIcal: function () {
+      var
+        strings = [],
+        startDate = this.get('time'),
+        start = Common.toIcalDate(startDate),
+        end = Common.toIcalDate(new Date(startDate.getTime() + this.get('length')));
+
+      strings.push('BEGIN:VEVENT\nORGANIZER;CN=Яндекс:MAILTO:shri@yandex.ru\n');
+      strings.push('DTSTART:' + start + '\n');
+      strings.push('DTEND:' + end + '\n');
+      strings.push('SUMMARY:' + this.get('title') + '\n');
+      strings.push('DESCRIPTION:' + (this.get('description') || '') + '\n');
+      strings.push('LOCATION:Офис компании Яндекс\nEND:VEVENT\n');
+      return strings.join('');
     }
   });
 });

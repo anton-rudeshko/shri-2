@@ -12,6 +12,7 @@ define('ScheduleView', ['backbone', 'handlebars', 'underscore', 'toastr', 'DayVi
       'click .schedule__export-json__button': 'exportJson',
       'click .schedule__import-json__button': 'importJson',
       'click .schedule__export-ical__button': 'exportIcal',
+      'click .schedule__import-ical__button': 'importIcal',
       'click .schedule__textarea'           : 'selectTextareaText'
     },
 
@@ -99,15 +100,15 @@ define('ScheduleView', ['backbone', 'handlebars', 'underscore', 'toastr', 'DayVi
     },
 
     exportJson: function () {
-      var events = this.model.prepareEventsForExport();
-      var text = JSON.stringify(events);
-      this.textarea.val(text);
-      this.textarea.select();
+      var
+        events = this.model.exportToJson(),
+        text = JSON.stringify(events);
+
+      this.textarea.val(text).select();
     },
 
     importJson: function () {
-      var parsed,
-        text = this.textarea.val();
+      var parsed, text = this.textarea.val();
       if (!text) {
         toastr.warning('Импортируем пустое расписание!');
       }
@@ -118,13 +119,22 @@ define('ScheduleView', ['backbone', 'handlebars', 'underscore', 'toastr', 'DayVi
         return;
       }
       window.localStorage.clear();
-      this.model.initFromJson(parsed);
-      this.render();
+      try {
+        this.model.initFromJson(parsed);
+        this.render();
+      } catch (e) {
+        toastr.error('Таки что-то сломалось: ' + e, 'ЖАЛЬ');
+        return;
+      }
       toastr.info('Готово!');
     },
 
     exportIcal: function () {
+      this.textarea.val(this.model.exportToIcal()).select();
+    },
 
+    importIcal: function () {
+      toastr.info('Да, это было бы хорошо!');
     }
   });
 });

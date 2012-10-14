@@ -89,7 +89,7 @@ define('ScheduleModel', ['backbone', 'underscore', 'DayModel', 'DayCollection', 
       }
     },
 
-    prepareEventsForExport: function () {
+    exportToJson: function () {
       var events = [];
       this.get('days').each(function (day) {
         day.get('events').each(function (event) {
@@ -100,6 +100,18 @@ define('ScheduleModel', ['backbone', 'underscore', 'DayModel', 'DayCollection', 
         })
       });
       return events;
+    },
+
+    exportToIcal: function () {
+      var strings = [];
+      strings.push('BEGIN:VCALENDAR\nVERSION:2.0\n');
+      this.get('days').each(function (day) {
+        day.get('events').each(function (event) {
+          strings.push(event.toIcal());
+        })
+      });
+      strings.push('END:VCALENDAR\n');
+      return strings.join('');
     }
   });
 });

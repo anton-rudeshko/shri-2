@@ -163,6 +163,10 @@ define('Common', function () {
       return to;
     },
 
+    toIcalDate: function (date) {
+      return date.toJSON().replace(/[.:-]/g,'');
+    },
+
     /**
      * Pad string left with two zeroes
      * @param {String} str
