@@ -64,6 +64,11 @@ define('ScheduleModel', ['backbone', 'underscore', 'DayModel', 'DayCollection', 
         date = new Date();
       }
       return Common.cropTime(Common.changeDate(date, +4)); // four days forward
+    },
+
+    addNewDay: function () {
+      console.log('Adding new day');
+      this.daysCollection.add(new DayModel({ date: Common.cropTime(new Date()) }));
     }
   });
 });

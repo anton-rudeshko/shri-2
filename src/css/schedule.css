@@ -34,6 +34,10 @@
   border-bottom: 1px dashed #999;
 }
 
+.schedule__add-day {
+  cursor: pointer;
+}
+
 @media (min-width: 960px) {
   .schedule {
     margin: 2em auto;
