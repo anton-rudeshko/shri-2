@@ -60,7 +60,8 @@ define('EventView', ['backbone', 'handlebars', 'Common', 'templates', 'maskedinp
         targetInput = $(e.currentTarget),
         targetGroup = targetInput.closest('.event__editable'),
         value = Common.trimWhiteSpace(targetInput.val()),
-        fieldName = targetGroup.data('field');
+        fieldName = targetGroup.data('field'),
+        wasEmpty = this.model.isEmpty();
 
       if (targetInput.attr('type') === 'time') {
         value = this.parseModelTime(value);
@@ -68,6 +69,9 @@ define('EventView', ['backbone', 'handlebars', 'Common', 'templates', 'maskedinp
 
       if (value !== null && fieldName) {
         this.model.save(fieldName, value);
+        if (!wasEmpty && this.model.isEmpty()) {
+          this.model.destroy();
+        }
       } else {
         targetInput.val(targetInput.data('before-edit'));
       }
