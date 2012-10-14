@@ -337,6 +337,20 @@ define('Common', function () {
         title: 'Дизайн глазами разработчика',
         lecturer: 'Михаил Трошев',
         time: parseDate('2012.10.13 14:00')
+      },
+      {
+        title: 'Защита экзаменов',
+        lecturer: 'Сергей Бережной (veged)',
+        time: parseDate('2012.10.16 19:00')
+      },
+      {
+        title: 'Защита экзаменов',
+        lecturer: 'Михаил Трошев (mishanga)',
+        time: parseDate('2012.10.18 19:00')
+      },
+      {
+        title: 'Гулянка',
+        time: parseDate('2012.10.20 12:00')
       }
     ]
   };
