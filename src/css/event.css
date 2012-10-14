@@ -57,25 +57,6 @@
   display: none;
 }
 
-.event__resizer {
-  width: 100%;
-  position: absolute;
-  bottom: 0;
-  visibility: hidden;
-  cursor: ns-resize;
-  height: 7px;
-}
-
-.event__resize-icon {
-  border-bottom: 3px double #aaa;
-  width: 10px;
-  margin: 0 auto;
-}
-
-.event:hover .event__resizer {
-  visibility: visible;
-}
-
 .event.selected {
   background-color: #f8f5ec;
 }
