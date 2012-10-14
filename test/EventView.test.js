@@ -5,9 +5,9 @@ require(['EventView', 'EventModel'], function (EventView, EventModel) {
     },
     'test should show input on double click': function () {
       var view = new EventView({ model: new EventModel() }).render();
-      assertFalse(view.$el.hasClass('event__editing_title'));
+      assertFalse(view.$el.hasClass('event__editing'));
       view.$('.event__title').trigger('click');
-      assertTrue(view.$el.hasClass('event__editing_title'));
+      assertTrue(view.$('.event__editing').length > 0);
     }
   });
 });
