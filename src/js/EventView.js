@@ -39,10 +39,11 @@ define('EventView', ['backbone', 'handlebars', 'Common', 'templates', 'maskedinp
       var
         targetSpan = $(e.currentTarget),
         targetGroup = targetSpan.closest('.event__editable'),
-        targetInput = targetSpan.next('input');
+        targetInput = targetSpan.next('input'),
+        beforeEdit = targetInput.val();
 
       targetGroup.addClass('event__editing');
-      targetInput.focus().val(targetInput.val());
+      targetInput.data('before-edit', beforeEdit).focus().val(beforeEdit);
     },
 
     onKeyUp: function(e) {
@@ -50,7 +51,7 @@ define('EventView', ['backbone', 'handlebars', 'Common', 'templates', 'maskedinp
         this.confirmEdit(e);
       }
       if (e.keyCode === Common.Keys.ESCAPE) {
-        this.render();
+        this.cancelEdit(e);
       }
     },
 
@@ -65,10 +66,21 @@ define('EventView', ['backbone', 'handlebars', 'Common', 'templates', 'maskedinp
         value = this.parseModelTime(value);
       }
 
-      if (value && fieldName) {
+      if (value !== null && fieldName) {
         this.model.save(fieldName, value);
+      } else {
+        targetInput.val(targetInput.data('before-edit'));
       }
 
+      targetGroup.removeClass('event__editing');
+    },
+
+    cancelEdit: function (e) {
+      var
+        targetInput = $(e.currentTarget),
+        targetGroup = targetInput.closest('.event__editable');
+
+      targetInput.val(targetInput.data('before-edit'));
       targetGroup.removeClass('event__editing');
     },
 
