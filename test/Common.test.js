@@ -95,6 +95,13 @@ require(['Common'], function (Common) {
       assertNotNull(time);
       assertEquals(1, time.getHours());
       assertEquals(2, time.getMinutes());
+    },
+
+    'test leading zeroes': function () {
+      var time = Common.parseTime('09:08');
+      assertNotNull(time);
+      assertEquals(9, time.getHours());
+      assertEquals(8, time.getMinutes());
     }
   });
 });

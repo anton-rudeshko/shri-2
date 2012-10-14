@@ -132,8 +132,8 @@ define('Common', function () {
       if (split.length != 2) {
         return null;
       }
-      hours = parseInt(split[0]);
-      minutes = parseInt(split[1]);
+      hours = parseInt(split[0], 10);
+      minutes = parseInt(split[1], 10);
       if (isNaN(hours) || isNaN(minutes)) {
         return null;
       }
