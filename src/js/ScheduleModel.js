@@ -67,8 +67,18 @@ define('ScheduleModel', ['backbone', 'underscore', 'DayModel', 'DayCollection', 
     },
 
     addNewDay: function () {
-      console.log('Adding new day');
-      this.daysCollection.add(new DayModel({ date: Common.cropTime(new Date()) }));
+      var date = this.suggestDate();
+      date = Common.cropTime(date);
+      this.daysCollection.add(new DayModel({ date: date }));
+    },
+
+    suggestDate: function () {
+      var last = this.daysCollection.last()
+      if (last) {
+        return Common.changeDate(Common.cloneDate(last.get('date')), +1);
+      } else {
+        return Common.cropTime(new Date());
+      }
     }
   });
 });
