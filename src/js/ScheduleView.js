@@ -1,4 +1,4 @@
-define('ScheduleView', ['backbone', 'handlebars', 'DayView', 'templates'], function (Backbone, Handlebars, DayView) {
+define('ScheduleView', ['backbone', 'handlebars', 'underscore', 'DayView', 'templates'], function (Backbone, Handlebars, _, DayView) {
   return Backbone.View.extend({
     className: 'schedule',
     template: Handlebars.templates['schedule'],
@@ -16,12 +16,21 @@ define('ScheduleView', ['backbone', 'handlebars', 'DayView', 'templates'], funct
     },
 
     renderDay: function (model) {
-      return new DayView({model: model}).render().el;
+      return new DayView({model: model}).render();
     },
 
     render: function () {
-      var els = this.model.daysCollection.map(this.renderDay);
-      this.$el.html(this.template()).find('.schedule__days').html(els);
+      function checkExpand(view) {
+        view.checkNeedExpand();
+      }
+
+      function extractElement(view) {
+        return view.el;
+      }
+
+      var views = this.model.daysCollection.map(this.renderDay);
+      this.$el.html(this.template()).find('.schedule__days').html(views.map(extractElement));
+      _.each(views, checkExpand);
       return this;
     },
 
@@ -47,7 +56,7 @@ define('ScheduleView', ['backbone', 'handlebars', 'DayView', 'templates'], funct
     },
 
     renderNewDay: function (model) {
-      this.$el.find('.schedule__days').append(this.renderDay(model));
+      this.$el.find('.schedule__days').append(this.renderDay(model).el);
     },
 
     addDay: function () {

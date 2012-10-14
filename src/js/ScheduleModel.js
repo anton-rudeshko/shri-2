@@ -4,6 +4,7 @@ define('ScheduleModel', ['backbone', 'underscore', 'DayModel', 'DayCollection', 
       this.daysCollection = new (DayCollection.extend({
         localStorage: new Backbone.LocalStorage("Days")
       }))();
+
       this.daysCollection.on('add', function (model) {
         model.save();
       });

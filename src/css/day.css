@@ -36,8 +36,12 @@
   color: #999;
 }
 
-.day__today {
+.day__today .day__events {
   background-color: #fefbe8;
+}
+
+.day__today .day__title {
+  color: #000 !important;
 }
 
 .day.expanded .day__title-container {

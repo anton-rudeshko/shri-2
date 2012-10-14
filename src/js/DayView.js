@@ -23,9 +23,10 @@ define('DayView', ['backbone', 'handlebars', 'EventView', 'Common', 'templates']
     checkNeedExpand: function () {
       var notEmpty = !this.getEvents().isEmpty(),
         titleWidth = this.$('.day__title').width(),
-        eventsHeight = this.$('.day__events').height();
+        eventsHeight = this.$('.day__events').height(),
+        classSwitch = notEmpty && !!titleWidth && titleWidth <= eventsHeight;
 
-      this.$el.toggleClass('expanded', notEmpty && titleWidth <= eventsHeight);
+      this.$el.toggleClass('expanded', classSwitch);
     },
 
     renderEvent: function (eventModel) {
@@ -34,7 +35,6 @@ define('DayView', ['backbone', 'handlebars', 'EventView', 'Common', 'templates']
 
     prepareModel: function () {
       var model = this.model.toJSON();
-      model.isToday = Common.isToday(model.date);
       model.title = Common.formatDayTitle(model.date);
       return model;
     },
@@ -47,6 +47,10 @@ define('DayView', ['backbone', 'handlebars', 'EventView', 'Common', 'templates']
 
       this.checkNeedExpand();
 
+      if (Common.isToday(this.model.get('date'))) {
+        this.$el.addClass('day__today');
+      }
+
       return this;
     },
 
@@ -55,8 +59,10 @@ define('DayView', ['backbone', 'handlebars', 'EventView', 'Common', 'templates']
       this.checkNeedExpand();
     },
 
-    addNewEvent: function () {
+    addNewEvent: function (e) {
       this.model.addEmptyEvent();
+      e.preventDefault();
+      return false;
     }
   });
 });
