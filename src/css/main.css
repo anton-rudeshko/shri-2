@@ -29,3 +29,9 @@ html, body {
   vertical-align: middle;
   text-align: center;
 }
+
+@media print {
+  .hide-on-print {
+    display: none !important;
+  }
+}

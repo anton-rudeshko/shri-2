@@ -5,7 +5,8 @@ define('ScheduleView', ['backbone', 'handlebars', 'DayView', 'templates'], funct
 
     events: {
       'click .schedule__start-again__button': 'startAgain',
-      'click .schedule__print__button': 'print'
+      'click .schedule__print__button': 'print',
+      'click .schedule__load-2012__button': 'load2012'
     },
 
     render: function () {
@@ -23,6 +24,10 @@ define('ScheduleView', ['backbone', 'handlebars', 'DayView', 'templates'], funct
     },
 
     print: function () {
+      window.print();
+    },
+
+    load2012: function () {
 
     }
   });

@@ -86,3 +86,21 @@
 .day__add-event:hover .day__add-event__icon {
   opacity: 1 !important;
 }
+
+@media print {
+  .day {
+    display: none;
+  }
+
+  .day.expanded {
+    display: block;
+  }
+
+  .day.expanded .day__title  {
+    -ms-transform:     none;
+    -webkit-transform: none;
+    -o-transform:      none;
+    -moz-transform:    none;
+    transform:         none;
+  }
+}

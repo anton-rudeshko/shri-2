@@ -73,3 +73,15 @@
   display: inline-block;
   border: none;
 }
+
+@media print {
+  .event {
+    border: none !important;
+    padding: 0;
+    margin: .5em;
+  }
+
+  .event__show-on-edit {
+    display: none !important;
+  }
+}
