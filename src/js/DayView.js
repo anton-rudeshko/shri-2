@@ -10,7 +10,8 @@ define('DayView', ['backbone', 'handlebars', 'EventView', 'templates'], function
 
     initialize: function () {
       this.model.bind('change:empty', this.toggleExpand, this);
-      this.model.events.bind('add', this.renderNewDay, this);
+      this.model.events.on('add', this.renderNewDay, this);
+      this.model.events.on('reset', this.render, this);
     },
 
     toggleExpand: function () {

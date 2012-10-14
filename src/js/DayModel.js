@@ -22,8 +22,13 @@ define('DayModel', ['backbone', 'EventCollection', 'EventModel', 'Common'], func
       var eventModels = this.get('events').map(createEvent);
       this.events = new EventCollection(eventModels);
       this.events.on('add remove', this.checkEmpty, this);
+      this.events.on('change:time', this.sortEvents, this);
 
       this.checkEmpty();
+    },
+
+    sortEvents: function () {
+      this.events.sort();
     },
 
     checkEmpty: function () {
