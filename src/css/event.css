@@ -31,24 +31,31 @@
 }
 
 .event__title,
-.event__time {
+.event__time,
+.event__lecturer {
   display: inline-block;
-  margin-right: 3px;
 }
 
-.event__title.event__empty-field  {
+.event__title.event__empty-field,
+.event__lecturer.event__empty-field {
   width: 177px;
+}
+
+.event__title {
+  margin-right: 3px;
 }
 
 .event__time {
   width: 37px;
+  margin-right: 3px;
 }
 
 .event__time-input {
   width: 40px;
 }
 
-.event__title-input {
+.event__title-input,
+.event__lecturer-input {
   width: 180px;
 }
 
