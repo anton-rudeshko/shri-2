@@ -59,4 +59,42 @@ require(['Common'], function (Common) {
       assertEquals('aaa bbb ccc ddd', Common.trimWhiteSpace('     aaa     bbb   ccc    ddd  '));
     }
   });
+
+  TestCase('Common parseTime test', {
+    'test parse empty': function () {
+      assertNull(Common.parseTime(''));
+    },
+
+    'test parse null': function () {
+      assertNull(Common.parseTime(null));
+    },
+
+    'test meaningless shit': function () {
+      assertNull(Common.parseTime('SDH&Y@'));
+    },
+
+    'test no colon': function () {
+      var time = Common.parseTime('1312');
+      assertNull(time);
+    },
+
+    'test too many colons': function () {
+      var time = Common.parseTime('13:1:2');
+      assertNull(time);
+    },
+
+    'test normal time': function () {
+      var time = Common.parseTime('13:12');
+      assertNotNull(time);
+      assertEquals(13, time.getHours());
+      assertEquals(12, time.getMinutes());
+    },
+
+    'test half time': function () {
+      var time = Common.parseTime('1:2');
+      assertNotNull(time);
+      assertEquals(1, time.getHours());
+      assertEquals(2, time.getMinutes());
+    }
+  });
 });

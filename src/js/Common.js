@@ -120,6 +120,42 @@ define('Common', function () {
     },
 
     /**
+     *
+     * @param timeStr format: HH:mm
+     */
+    parseTime: function (timeStr) {
+      var split, time, hours, minutes;
+      if (!timeStr) {
+        return null;
+      }
+      split = timeStr.split(':');
+      if (split.length != 2) {
+        return null;
+      }
+      hours = parseInt(split[0]);
+      minutes = parseInt(split[1]);
+      if (isNaN(hours) || isNaN(minutes)) {
+        return null;
+      }
+      time = new Date(0);
+      time.setHours(hours);
+      time.setMinutes(minutes);
+      return time;
+    },
+
+    cloneDate: function (date) {
+      return new Date(date.getTime());
+    },
+
+    copyTime: function (from, to) {
+      to.setHours(from.getHours());
+      to.setMinutes(from.getMinutes());
+      to.setSeconds(from.getSeconds());
+      to.setMilliseconds(from.getMilliseconds());
+      return to;
+    },
+
+    /**
      * Pad string left with two zeroes
      * @param {String} str
      * @return {String}
