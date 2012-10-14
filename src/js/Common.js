@@ -343,6 +343,15 @@ define('Common', function () {
         time: parseDate('2012.10.13 14:00')
       },
       {
+        title: 'Кто-то меня проверяет...',
+        lecturer: 'Привет, как дела?',
+        time: parseDate('2012.10.15 15:00')
+      },
+      {
+        title: 'Хорошего вечера',
+        time: parseDate('2012.10.15 17:00')
+      },
+      {
         title: 'Защита экзаменов',
         lecturer: 'Сергей Бережной (veged)',
         time: parseDate('2012.10.16 19:00')

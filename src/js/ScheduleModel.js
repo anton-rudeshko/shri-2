@@ -93,6 +93,9 @@ define('ScheduleModel', ['backbone', 'underscore', 'DayModel', 'DayCollection', 
       var events = [];
       this.get('days').each(function (day) {
         day.get('events').each(function (event) {
+          if (event.isEmpty()) {
+            return;
+          }
           var item = event.toJSON();
           delete item.id;
           item.time = event.get('time').getTime();
@@ -107,6 +110,9 @@ define('ScheduleModel', ['backbone', 'underscore', 'DayModel', 'DayCollection', 
       strings.push('BEGIN:VCALENDAR\nVERSION:2.0\n');
       this.get('days').each(function (day) {
         day.get('events').each(function (event) {
+          if (event.isEmpty()) {
+            return;
+          }
           strings.push(event.toIcal());
         })
       });

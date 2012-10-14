@@ -93,6 +93,7 @@ define('ScheduleView', ['backbone', 'handlebars', 'underscore', 'toastr', 'DayVi
     toggleImportExport: function () {
       var container = this.$('.schedule__textarea-container');
       container.slideToggle(container.is(':visible'));
+      return false;
     },
 
     selectTextareaText: function () {
@@ -105,6 +106,7 @@ define('ScheduleView', ['backbone', 'handlebars', 'underscore', 'toastr', 'DayVi
         text = JSON.stringify(events);
 
       this.textarea.val(text).select();
+      return false;
     },
 
     importJson: function () {
@@ -116,7 +118,7 @@ define('ScheduleView', ['backbone', 'handlebars', 'underscore', 'toastr', 'DayVi
         parsed = JSON.parse(text || '[]');
       } catch (e) {
         toastr.error('К сожалению, Ваш JSON весьма невалиден: ' + e, 'ЕГОР');
-        return;
+        return false;
       }
       window.localStorage.clear();
       try {
@@ -124,17 +126,20 @@ define('ScheduleView', ['backbone', 'handlebars', 'underscore', 'toastr', 'DayVi
         this.render();
       } catch (e) {
         toastr.error('Таки что-то сломалось: ' + e, 'ЖАЛЬ');
-        return;
+        return false;
       }
       toastr.info('Готово!');
+      return false;
     },
 
     exportIcal: function () {
       this.textarea.val(this.model.exportToIcal()).select();
+      return false;
     },
 
     importIcal: function () {
       toastr.info('Да, это было бы хорошо!');
+      return false;
     }
   });
 });
