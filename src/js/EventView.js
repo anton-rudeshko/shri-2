@@ -7,6 +7,7 @@ define('EventView', ['backbone', 'handlebars', 'Common', 'templates'], function 
     events: {
 //      'click': 'select',
 
+      'click .event__delete_button' : 'destroy',
       'click .event__editable span' : 'edit',
       'keyup .event__editable input': 'onKeyUp',
       'blur  .event__editable input': 'confirmEdit'
@@ -15,6 +16,10 @@ define('EventView', ['backbone', 'handlebars', 'Common', 'templates'], function 
     initialize: function () {
       this.model.bind('change', this.render, this);
       this.model.bind('destroy', this.remove, this);
+    },
+
+    destroy: function () {
+      this.model.destroy();
     },
 
     prepareModel: function () {
