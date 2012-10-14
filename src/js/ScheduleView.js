@@ -18,6 +18,7 @@ define('ScheduleView', ['backbone', 'handlebars', 'DayView', 'templates'], funct
     },
 
     startAgain: function () {
+      toastr.info('Начинаем сначала');
       window.localStorage.clear();
       this.model.initFromJson([]);
       this.render();

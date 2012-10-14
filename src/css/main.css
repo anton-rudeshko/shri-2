@@ -3,6 +3,7 @@
 @import url("event.css");
 @import url("schedule.css");
 @import url("footer.css");
+@import url("toastr.css");
 
 html, body {
   height: 100%;
