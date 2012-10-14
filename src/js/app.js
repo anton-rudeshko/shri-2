@@ -1,6 +1,7 @@
 require.config({
   paths: {
     'jquery': 'lib/jquery',
+    'maskedinput': 'lib/jquery.maskedinput',
     'underscore': 'lib/underscore',
     'handlebars': 'lib/handlebars',
     'backbone': 'lib/backbone',
@@ -8,6 +9,7 @@ require.config({
   },
   shim: {
     'jquery': { exports: '$' },
+    'maskedinput': { deps: ['jquery'] },
     'underscore': { exports: '_' },
     'handlebars': { exports: 'Handlebars' },
     'backbone': { exports: 'Backbone', deps: ['underscore', 'jquery'] },
