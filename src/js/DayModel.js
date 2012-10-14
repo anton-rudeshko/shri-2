@@ -30,7 +30,7 @@ define('DayModel', ['backbone', 'EventCollection', 'EventModel', 'Common'], func
         time = last.get('time').getTime();
         offset = last.get('length');
       } else {
-        time = Common.cropTime(new Date()).getTime();
+        time = Common.cropTime(this.get('date')).getTime();
         offset = 9*Common.HOUR;
       }
       return new Date(time + offset);
