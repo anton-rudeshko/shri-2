@@ -5,7 +5,7 @@ define('DayView', ['backbone', 'handlebars', 'EventView', 'Common', 'templates']
     template: Handlebars.templates['day'],
 
     events: {
-      'click .day__add-event': 'addNewDay'
+      'click .day__add-event': 'addNewEvent'
     },
 
     initialize: function () {
@@ -55,7 +55,7 @@ define('DayView', ['backbone', 'handlebars', 'EventView', 'Common', 'templates']
       this.checkNeedExpand();
     },
 
-    addNewDay: function () {
+    addNewEvent: function () {
       this.model.addEmptyEvent();
     }
   });
