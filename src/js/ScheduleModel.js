@@ -1,13 +1,12 @@
 define('ScheduleModel', ['backbone', 'underscore', 'DayModel', 'DayCollection', 'Common'], function (Backbone, _, DayModel, DayCollection, Common) {
   return Backbone.Model.extend({
-    localStorage: new Backbone.LocalStorage("ScheduleModel"),
-
     initialize: function () {
-      this.daysCollection = new DayCollection();
+      this.daysCollection = new (DayCollection.extend({
+        localStorage: new Backbone.LocalStorage("Days")
+      }))();
       this.daysCollection.on('add', function (model) {
         model.save();
       });
-      // todo: on remove?
     },
 
     initFromJson: function (events) {
@@ -24,13 +23,14 @@ define('ScheduleModel', ['backbone', 'underscore', 'DayModel', 'DayCollection', 
         lastDay = this.getLastDate(sortedEvents),
         dateIterator = new Date(firstDay.getTime()),
         lastDayTime = lastDay.getTime(),
-        days = [];
+        days = [],
+        day;
 
       while (dateIterator.getTime() <= lastDayTime) {
-        days.push(new DayModel({
-          events: groupedEvents[dateIterator.getTime()] || [],
-          date: new Date(dateIterator.getTime())
-        }));
+        day = new DayModel({ date: new Date(dateIterator.getTime()) });
+        day.get('events').add(groupedEvents[dateIterator.getTime()] || []);
+        day.saveAll();
+        days.push(day);
         Common.changeDate(dateIterator, +1);
       }
 

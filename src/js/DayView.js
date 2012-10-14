@@ -9,13 +9,19 @@ define('DayView', ['backbone', 'handlebars', 'EventView', 'Common', 'templates']
     },
 
     initialize: function () {
-      this.model.events.on('add', this.renderNewDay, this);
-      this.model.events.on('add remove', this.checkNeedExpand, this);
-      this.model.events.on('reset', this.render, this);
+      var events = this.getEvents();
+
+      events.on('add', this.renderNewDay, this);
+      events.on('add remove', this.checkNeedExpand, this);
+      events.on('reset', this.render, this);
+    },
+
+    getEvents: function () {
+      return this.model.get('events');
     },
 
     checkNeedExpand: function () {
-      var notEmpty = !this.model.events.isEmpty(),
+      var notEmpty = !this.getEvents().isEmpty(),
         titleWidth = this.$('.day__title').width(),
         eventsHeight = this.$('.day__events').height();
 
@@ -37,7 +43,7 @@ define('DayView', ['backbone', 'handlebars', 'EventView', 'Common', 'templates']
       this.$el
         .html(this.template(this.prepareModel()))
         .find('.children')
-        .html(this.model.events.map(this.renderEvent));
+        .html(this.getEvents().map(this.renderEvent));
 
       this.checkNeedExpand();
 

@@ -6,25 +6,31 @@ define('DayModel', ['backbone', 'EventCollection', 'EventModel', 'Common'], func
     },
 
     initialize: function () {
-      function createEvent(event) {
-        return new EventModel(event);
-      }
+      var events = new (EventCollection.extend({
+        localStorage: new Backbone.LocalStorage("EC-"+this.get('date').getTime())
+      }))();
+      this.set('events', events);
 
-      var eventModels = this.get('events').map(createEvent);
-      this.events = new EventCollection(eventModels);
-      this.events.on('change:time', this.sortEvents, this);
+      events.on('change:time', this.sortEvents, this);
+      events.fetch();
+    },
+
+    saveAll: function () {
+      this.get('events').each(function (model) {
+        model.save();
+      });
     },
 
     sortEvents: function () {
-      this.events.sort();
+      this.get('events').sort();
     },
 
     addEmptyEvent: function () {
-      this.events.add(new EventModel({time: this.suggestTime()}))
+      this.get('events').add(new EventModel({time: this.suggestTime()}))
     },
 
     suggestTime: function () {
-      var last = this.events.last(),
+      var last = this.get('events').last(),
         time, offset;
       if (last) {
         time = last.get('time').getTime();
