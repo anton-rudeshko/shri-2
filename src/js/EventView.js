@@ -54,12 +54,20 @@ define('EventView', ['backbone', 'handlebars', 'Common', 'templates'], function 
         value = Common.trimWhiteSpace(targetInput.val()),
         fieldName = targetGroup.data('field');
 
+      if (targetInput.attr('type') === 'time') {
+        value = this.parseModelTime(value);
+      }
+
       if (value && fieldName) {
         this.model.save(fieldName, value);
-        targetInput.val(this.model.get(fieldName));
       }
 
       targetGroup.removeClass('event__editing');
+    },
+
+    parseModelTime: function (time) {
+      var parsed = Common.parseTime(time);
+      return parsed ? Common.copyTime(parsed, Common.cloneDate(this.model.get('time'))) : null;
     },
 
     select: function () {

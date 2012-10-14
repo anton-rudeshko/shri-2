@@ -2,21 +2,21 @@
     <span class="event__time event__hide-on-edit" title="Кликни для редактирования">
         {{formattedDate}}
     </span>
-    <input class="event__time-input event__show-on-edit" value="{{formattedDate}}"/>
+    <input type="time" class="event__time-input event__show-on-edit" value="{{formattedDate}}"/>
 </div>
 
 <div data-field="title" class="event__editable">
     <span class="event__title event__hide-on-edit" title="Кликни для редактирования">
         {{title}}
     </span>
-    <input class="event__title-input event__show-on-edit" placeholder="Тема лекции" value="{{title}}"/>
+    <input type="text" class="event__title-input event__show-on-edit" placeholder="Тема лекции" value="{{title}}"/>
 </div>
 
 <div data-field="lecturer" class="event__editable">
     <span class="event__lecturer event__hide-on-edit" title="Кликните для редактирования">
         {{lecturer}}
     </span>
-    <input class="event__lecturer-input event__show-on-edit" placeholder="Кто читает?" value="{{lecturer}}"/>
+    <input type="text" class="event__lecturer-input event__show-on-edit" placeholder="Кто читает?" value="{{lecturer}}"/>
 </div>
 
 <div class="event__resizer">

@@ -18,6 +18,10 @@
   transition: all .2s;
 }
 
+.event input {
+  font: inherit;
+}
+
 .event__lecturer {
   color: #ccc;
 }
@@ -25,6 +29,15 @@
 .event__title,
 .event__time {
   margin-right: 3px;
+}
+
+.event__time {
+  width: 37px;
+  display: inline-block;
+}
+
+.event__time-input {
+  width: 40px;
 }
 
 .event:hover {
