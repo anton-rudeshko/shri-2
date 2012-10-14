@@ -104,7 +104,7 @@
 
 .event:hover .event__empty-field,
 .event__empty .event__empty-field {
-  color: #eee !important;
+  color: #ccc !important;
 }
 
 .event__editable {

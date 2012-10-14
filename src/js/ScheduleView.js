@@ -7,7 +7,7 @@ define('ScheduleView', ['backbone', 'handlebars', 'underscore', 'DayView', 'temp
       'click .schedule__start-again__button': 'startAgain',
       'click .schedule__print__button'      : 'print',
       'click .schedule__load-2012__button'  : 'load2012',
-      'click .schedule__add-day'            : 'addDay'
+      'click .schedule__add-day__button'    : 'addDay'
     },
 
     initialize: function () {

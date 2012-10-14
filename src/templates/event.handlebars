@@ -20,15 +20,15 @@
 
 <div data-field="lecturer" class="event__editable">
     {{#if lecturer}}
-    <span class="event__lecturer event__hide-on-edit" title="Кликните для редактирования">
+    <span class="event__lecturer event__hide-on-edit" title="Кликни для редактирования">
         {{lecturer}}
     </span>
     {{else}}
-    <span class="event__lecturer event__empty-field event__hide-on-edit" title="Кликните для редактирования">
+    <span class="event__lecturer event__empty-field event__hide-on-edit" title="Кликни для редактирования">
         Кто читает?
     </span>
     {{/if}}
     <input type="text" class="event__lecturer-input event__show-on-edit" placeholder="Кто читает?" value="{{lecturer}}"/>
 </div>
 
-<div class="event__delete_button">&nbsp;</div>
+<div class="event__delete_button" title="Удалить это занятие">&nbsp;</div>
