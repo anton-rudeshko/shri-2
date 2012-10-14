@@ -36,16 +36,17 @@
   color: #999;
 }
 
-.day__today .day__events {
+.day.day__today .day__events {
   background-color: #fefbe8;
+  border-left: 3px solid #f00;
 }
 
-.day__today .day__title {
-  color: #000 !important;
+.day.day__today .day__title {
+  color: #000;
 }
 
-.day.expanded .day__title-container {
-
+.day.day__future .day__title {
+  color: #555;
 }
 
 .day.expanded .day__title  {

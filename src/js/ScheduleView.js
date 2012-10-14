@@ -31,6 +31,7 @@ define('ScheduleView', ['backbone', 'handlebars', 'underscore', 'DayView', 'temp
       var views = this.model.daysCollection.map(this.renderDay);
       this.$el.html(this.template()).find('.schedule__days').html(views.map(extractElement));
       _.each(views, checkExpand);
+
       return this;
     },
 

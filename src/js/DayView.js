@@ -24,7 +24,7 @@ define('DayView', ['backbone', 'handlebars', 'EventView', 'Common', 'templates']
       var notEmpty = !this.getEvents().isEmpty(),
         titleWidth = this.$('.day__title').width(),
         eventsHeight = this.$('.day__events').height(),
-        classSwitch = notEmpty && !!titleWidth && titleWidth <= eventsHeight;
+        classSwitch = notEmpty && titleWidth <= eventsHeight;
 
       this.$el.toggleClass('expanded', classSwitch);
     },
@@ -46,12 +46,22 @@ define('DayView', ['backbone', 'handlebars', 'EventView', 'Common', 'templates']
         .html(this.getEvents().map(this.renderEvent));
 
       this.checkNeedExpand();
-
-      if (Common.isToday(this.model.get('date'))) {
-        this.$el.addClass('day__today');
-      }
+      this.$el.addClass(this.getDayClass());
 
       return this;
+    },
+
+    getDayClass: function () {
+      var date = this.model.get('date');
+      if (Common.isPast(date)) {
+        return 'day__past';
+      }
+      if (Common.isToday(date)) {
+        return 'day__today';
+      }
+      if (Common.isFuture(date)) {
+        return 'day__future';
+      }
     },
 
     renderNewEvent: function (model) {

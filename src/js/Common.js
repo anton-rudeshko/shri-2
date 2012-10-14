@@ -60,6 +60,14 @@ define('Common', function () {
       return this.cropTime(date).getTime() === this.cropTime(new Date()).getTime();
     },
 
+    isPast: function (date) {
+      return this.cropTime(date).getTime() < this.cropTime(new Date()).getTime();
+    },
+
+    isFuture: function (date) {
+      return this.cropTime(date).getTime() > this.cropTime(new Date()).getTime();
+    },
+
     onThisWeek: function (date, currentDate) {
       var diffMillis = Math.abs(currentDate.getTime() - date.getTime());
       return diffMillis <= 5*24*60*60*1000; // todo: extract
