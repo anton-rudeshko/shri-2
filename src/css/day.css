@@ -54,7 +54,6 @@
 
 .day__events {
   border-left: 3px solid #ccc;
-  padding-left: 5px;
   display: inline-block;
   min-height: 20px;
   width: 50%;

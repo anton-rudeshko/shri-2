@@ -50,6 +50,7 @@ define('app', [
       model: scheduleModel
     }).render();
   } catch (e) {
-    toastr.error('Не могу стартовать =( Это всё она: ' + e, 'WTF!')
+    toastr.error('Не могу стартовать =( Это всё она: ' + e, 'WTF!');
+    throw e;
   }
 });
