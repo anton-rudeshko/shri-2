@@ -1,4 +1,4 @@
-define('DayView', ['backbone', 'handlebars', 'EventView', 'templates'], function (Backbone, Handlebars, EventView) {
+define('DayView', ['backbone', 'handlebars', 'EventView', 'Common', 'templates'], function (Backbone, Handlebars, EventView, Common) {
   return Backbone.View.extend({
     tagName: 'li',
     className: 'day',
@@ -9,15 +9,16 @@ define('DayView', ['backbone', 'handlebars', 'EventView', 'templates'], function
     },
 
     initialize: function () {
-      this.model.bind('change:empty', this.toggleExpand, this);
       this.model.events.on('add', this.renderNewDay, this);
+      this.model.events.on('add remove', this.checkNeedExpand, this);
       this.model.events.on('reset', this.render, this);
     },
 
-    toggleExpand: function () {
-      var notEmpty = !this.model.get('empty');
-      var titleWidth = this.$('.day__title').width();
-      var eventsHeight = this.$('.day__events').height();
+    checkNeedExpand: function () {
+      var notEmpty = !this.model.events.isEmpty(),
+        titleWidth = this.$('.day__title').width(),
+        eventsHeight = this.$('.day__events').height();
+
       this.$el.toggleClass('expanded', notEmpty && titleWidth <= eventsHeight);
     },
 
@@ -25,24 +26,31 @@ define('DayView', ['backbone', 'handlebars', 'EventView', 'templates'], function
       return new EventView({model: eventModel}).render().el;
     },
 
+    prepareModel: function () {
+      var model = this.model.toJSON();
+      model.isToday = Common.isToday(model.date);
+      model.title = Common.formatDayTitle(model.date);
+      return model;
+    },
+
     render: function () {
       this.$el
-        .html(this.template(this.model.toJSON()))
+        .html(this.template(this.prepareModel()))
         .find('.children')
         .html(this.model.events.map(this.renderEvent));
 
-      this.toggleExpand();
+      this.checkNeedExpand();
 
       return this;
     },
 
     renderNewDay: function (model) {
       this.$el.find('.children').append(this.renderEvent(model));
-      this.toggleExpand();
+      this.checkNeedExpand();
     },
 
     addNewDay: function () {
-      this.model.addEmpty();
+      this.model.addEmptyEvent();
     }
   });
 });
