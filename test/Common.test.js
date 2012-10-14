@@ -60,6 +60,25 @@ require(['Common'], function (Common) {
     }
   });
 
+  TestCase('Common formatDayTitle test', {
+    setUp: function () {
+      this.currentDate = new Date(2012, 9, 10, 10, 20, 30);
+      this.clone = Common.cloneDate(this.currentDate);
+    },
+    'test format this week': function () {
+      var date = Common.changeDate(this.clone, 0);
+      assertEquals('среда', Common.formatDayTitle(date, this.currentDate));
+    },
+    'test format off week': function () {
+      var date = Common.changeDate(this.clone, -7);
+      assertEquals('среда, 03.10', Common.formatDayTitle(date, this.currentDate));
+    },
+    'test format far away': function () {
+      var date = Common.changeDate(this.clone, -14);
+      assertEquals('26.09', Common.formatDayTitle(date, this.currentDate));
+    }
+  });
+
   TestCase('Common parseTime test', {
     'test parse empty': function () {
       assertNull(Common.parseTime(''));

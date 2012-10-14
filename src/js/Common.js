@@ -50,7 +50,7 @@ define('Common', function () {
       if (this.onThisWeek(date, currentDate)) {
         return this.getWeekDayName(date);
       } else if (this.onNextWeek(date, currentDate)) {
-        return this.getWeekDayName(date) + ', ' + this.getDate(date);
+        return this.getWeekDayName(date) + ', ' + this.formatDate(date);
       } else {
         return this.formatDate(date);
       }
@@ -62,7 +62,7 @@ define('Common', function () {
 
     onThisWeek: function (date, currentDate) {
       var diffMillis = Math.abs(currentDate.getTime() - date.getTime());
-      return diffMillis <= 5*24*60*60*1000;
+      return diffMillis <= 5*24*60*60*1000; // todo: extract
     },
 
     onNextWeek: function (date, currentDate) {
@@ -232,6 +232,103 @@ define('Common', function () {
         title: 'HTTP-протокол',
         lecturer: 'Алексей Бережной',
         time: parseDate('2012.09.22 14:00')
+      },
+      {
+        title: 'XSLT (факультативная)',
+        lecturer: 'Сергей Пузанков',
+        time: parseDate('2012.09.24 19:00'),
+        length: 3*HOUR
+      },
+      {
+        title: 'Механизм работы браузера',
+        lecturer: 'Роман Комаров',
+        time: parseDate('2012.09.25 19:00')
+      },
+      {
+        title: 'Кеширование на клиенте и сервере',
+        lecturer: 'Егор Львовский',
+        time: parseDate('2012.09.25 20:00')
+      },
+      {
+        title: 'Безопасность веб-приложений',
+        lecturer: 'Тарас Иващенко',
+        time: parseDate('2012.09.27 19:00')
+      },
+      {
+        title: 'Языки программирования',
+        lecturer: 'Алексей Воинов',
+        time: parseDate('2012.09.27 20:00')
+      },
+      {
+        title: 'JS. Базовые знания',
+        lecturer: 'Михаил Давыдов',
+        time: parseDate('2012.09.29 12:00')
+      },
+      {
+        title: 'Транспорт. AJAX',
+        lecturer: 'Михаил Давыдов',
+        time: parseDate('2012.09.29 13:00')
+      },
+      {
+        title: 'JS. Асинхронность',
+        lecturer: 'Михаил Давыдов',
+        time: parseDate('2012.09.29 14:00')
+      },
+      {
+        title: 'Отладка кода',
+        lecturer: 'Алексей Андросов',
+        time: parseDate('2012.10.02 19:00')
+      },
+      {
+        title: 'Клиентская оптимизация',
+        lecturer: 'Иван Карев',
+        time: parseDate('2012.10.04 19:00')
+      },
+      {
+        title: 'Profiler',
+        lecturer: 'Михаил Корепанов',
+        time: parseDate('2012.10.04 20:00')
+      },
+      {
+        title: 'Регулярные выражения',
+        lecturer: 'Максим Ширшин',
+        time: parseDate('2012.10.06 12:00')
+      },
+      {
+        title: 'CSS',
+        lecturer: 'Михаил Трошев',
+        time: parseDate('2012.10.06 13:00')
+      },
+      {
+        title: 'Фреймворки. Обзор',
+        lecturer: 'Алексей Андросов',
+        time: parseDate('2012.10.09 19:00')
+      },
+      {
+        title: 'jQuery',
+        lecturer: 'Алексей Бережной',
+        time: parseDate('2012.10.09 20:00')
+      },
+      {
+        title: 'БЭМ (2 лекции)',
+        lecturer: 'Владимир Варанкин',
+        time: parseDate('2012.10.11 19:00'),
+        length: 2*HOUR
+      },
+      {
+        title: 'Шаблонизаторы',
+        lecturer: 'Сергей Бережной',
+        time: parseDate('2012.10.13 12:00')
+      },
+      {
+        title: 'Дизайн',
+        lecturer: 'Константин Горский',
+        time: parseDate('2012.10.13 13:00')
+      },
+      {
+        title: 'Дизайн глазами разработчика',
+        lecturer: 'Михаил Трошев',
+        time: parseDate('2012.10.13 14:00')
       }
     ]
   };
