@@ -64,6 +64,11 @@
   box-shadow: 0 0 5px #ddd;
 }
 
+.event.event__empty:hover {
+  border: inherit;
+  box-shadow: none;
+}
+
 .event:hover .event__lecturer {
   color: #999;
 }
@@ -85,13 +90,20 @@
   opacity: .3;
 }
 
-
 .event__delete_button:hover {
   opacity: 1 !important;
 }
 
-.event__empty-field,
 .event__empty .event__time {
+  color: #eee !important;
+}
+
+.event .event__empty-field {
+  color: #fff;
+}
+
+.event:hover .event__empty-field,
+.event__empty .event__empty-field {
   color: #eee !important;
 }
 
