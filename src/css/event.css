@@ -127,6 +127,10 @@
     margin: .5em;
   }
 
+  .event__empty {
+    display: none !important;
+  }
+
   .event__show-on-edit {
     display: none !important;
   }
