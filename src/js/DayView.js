@@ -11,7 +11,7 @@ define('DayView', ['backbone', 'handlebars', 'EventView', 'Common', 'templates']
     initialize: function () {
       var events = this.getEvents();
 
-      events.on('add', this.renderNewDay, this);
+      events.on('add', this.renderNewEvent, this);
       events.on('add remove', this.checkNeedExpand, this);
       events.on('reset', this.render, this);
     },
@@ -42,7 +42,7 @@ define('DayView', ['backbone', 'handlebars', 'EventView', 'Common', 'templates']
     render: function () {
       this.$el
         .html(this.template(this.prepareModel()))
-        .find('.children')
+        .find('.day__events-list')
         .html(this.getEvents().map(this.renderEvent));
 
       this.checkNeedExpand();
@@ -50,8 +50,8 @@ define('DayView', ['backbone', 'handlebars', 'EventView', 'Common', 'templates']
       return this;
     },
 
-    renderNewDay: function (model) {
-      this.$el.find('.children').append(this.renderEvent(model));
+    renderNewEvent: function (model) {
+      this.$el.find('.day__events-list').append(this.renderEvent(model));
       this.checkNeedExpand();
     },
 
