@@ -22,8 +22,8 @@ require(['Common'], function (Common) {
     },
 
     'test cropped with same date is equal': function () {
-      var cropped1 = Common.cropTime(this.date)
-        , cropped2 = Common.cropTime(new Date(2012, 10, 15, 15, 21, 1, 3));
+      var cropped1 = Common.cropTime(this.date),
+        cropped2 = Common.cropTime(new Date(2012, 10, 15, 15, 21, 1, 3));
 
       assertEquals(cropped1, cropped2);
       assertEquals(cropped1.getTime(), cropped2.getTime());
