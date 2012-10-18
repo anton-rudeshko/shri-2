@@ -1,4 +1,5 @@
 # Второе задание для ШРИ
+[![Build Status](https://secure.travis-ci.org/anton-rudeshko/shri-2.png)](http://travis-ci.org/anton-rudeshko/shri-2)
 
 Продакшн версия лежит в ветке [gh-pages](https://github.com/anton-rudeshko/shri-2/tree/gh-pages),
 посмотреть можно, соответственно, тут: [http://anton-rudeshko.github.com/shri-2/](http://anton-rudeshko.github.com/shri-2/)
